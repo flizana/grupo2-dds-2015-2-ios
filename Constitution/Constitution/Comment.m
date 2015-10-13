@@ -19,4 +19,38 @@
 
 @implementation Comment
 
+- (NSInteger)getCommentId
+{
+    // TODO: return comment id
+    return 0;
+}
+
+- (NSString *)getComment
+{
+    // TODO: return comment
+    return @"";
+}
+
+- (NSInteger)getNumApproval
+{
+    // TODO: return number of approvals
+    return 0;
+}
+
+- (NSInteger)getNumDisapproval
+{
+    // TODO: return number of disapprovals
+    return 0;
+}
+
+- (void)approveWithUserId:(NSInteger)userId block:(void (^)(BOOL, NSError *))result
+{
+    // TODO: approve comment against server
+}
+
+- (void)disapproveWithUserId:(NSInteger)userId block:(void (^)(BOOL, NSError *))result
+{
+    // TODO: disapprove comment against server
+}
+
 @end
