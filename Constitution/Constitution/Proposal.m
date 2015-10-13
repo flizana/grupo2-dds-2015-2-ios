@@ -13,8 +13,8 @@
 @property (nonatomic) NSInteger proposalId;
 @property (strong, nonatomic) NSString *proposal;
 @property (strong, nonatomic) NSArray *comments;
-@property (nonatomic) NSInteger numApprovals;
-@property (nonatomic) NSInteger numDisapprovals;
+@property (nonatomic) NSInteger numApproval;
+@property (nonatomic) NSInteger numDisapproval;
 
 @end
 

@@ -10,4 +10,15 @@
 
 @interface Proposal : NSObject
 
+#pragma mark - Instance Methods
+
+- (NSInteger)getProposalId;
+- (NSString *)getProposal;
+- (NSArray *)getComments;
+- (NSInteger)getNumApproval;
+- (NSInteger)getNumDisapproval;
+- (void)approveWithUserId:(NSInteger)userId block:(void (^)(BOOL, NSError *))result;
+- (void)disapproveWithUserId:(NSInteger)userId block:(void (^)(BOOL, NSError *))result;
+- (void)insertComment:(NSString *)comment block:(void (^)(BOOL, NSError *))result;
+
 @end
