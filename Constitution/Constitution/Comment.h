@@ -10,4 +10,13 @@
 
 @interface Comment : NSObject
 
+#pragma mark - Instance Methods
+
+- (NSInteger)getCommentId;
+- (NSString *)getComment;
+- (NSInteger)getNumApproval;
+- (NSInteger)getNumDisapproval;
+- (void)approveWithUserId:(NSInteger)userId block:(void (^)(BOOL, NSError *))result;
+- (void)disapproveWithUserId:(NSInteger)userId block:(void (^)(BOOL, NSError *))result;
+
 @end
