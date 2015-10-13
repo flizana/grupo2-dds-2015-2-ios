@@ -20,4 +20,51 @@
 
 @implementation Proposal
 
+#pragma mark - Instance Methods
+
+- (NSInteger)getProposalId
+{
+    // TODO: return proposal id
+    return 0;
+}
+
+- (NSString *)getProposal
+{
+    // TODO: return proposal
+    return @"";
+}
+
+- (NSArray *)getComments
+{
+    // TODO: return comments
+    return @[];
+}
+
+- (NSInteger)getNumApproval
+{
+    // TODO: return number of approvals
+    return 0;
+}
+
+- (NSInteger)getNumDisapproval
+{
+    // TODO: return number of disapprovals
+    return 0;
+}
+
+- (void)approveWithUserId:(NSInteger)userId block:(void (^)(BOOL, NSError *))result
+{
+    // TODO: approve proposal against server
+}
+
+- (void)disapproveWithUserId:(NSInteger)userId block:(void (^)(BOOL, NSError *))result
+{
+    // TODO: disapprove proposal against server
+}
+
+- (void)insertComment:(NSString *)comment block:(void (^)(BOOL, NSError *))result
+{
+    // TODO: insert comment against server
+}
+
 @end
