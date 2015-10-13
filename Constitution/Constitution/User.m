@@ -15,11 +15,11 @@
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSString *email;
-@property (strong, nonatomic) NSString *gender;
-@property (strong, nonatomic) NSDate *birthDate;
+@property (nonatomic, assign) NSString *gender;
+@property (nonatomic, assign) NSDate *birthDate;
 @property (nonatomic) NSInteger age;
-@property (strong, nonatomic) NSString *region;
-@property (strong, nonatomic) NSString *city;
+@property (nonatomic, assign) NSString *region;
+@property (nonatomic, assign) NSString *city;
 @property (strong, nonatomic) NSString *userToken;
 
 @end
