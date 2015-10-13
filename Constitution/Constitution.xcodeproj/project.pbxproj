@@ -15,6 +15,9 @@
 		534F31961BCDAE8C00C74544 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 534F31951BCDAE8C00C74544 /* Images.xcassets */; };
 		534F31991BCDAE8C00C74544 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 534F31971BCDAE8C00C74544 /* LaunchScreen.xib */; };
 		534F31A51BCDAE8C00C74544 /* ConstitutionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 534F31A41BCDAE8C00C74544 /* ConstitutionTests.m */; };
+		534F31B11BCDB04A00C74544 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 534F31B01BCDB04A00C74544 /* User.m */; };
+		534F31B41BCDB05E00C74544 /* Proposal.m in Sources */ = {isa = PBXBuildFile; fileRef = 534F31B31BCDB05E00C74544 /* Proposal.m */; };
+		534F31B71BCDB06900C74544 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 534F31B61BCDB06900C74544 /* Comment.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,12 @@
 		534F319E1BCDAE8C00C74544 /* ConstitutionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConstitutionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		534F31A31BCDAE8C00C74544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		534F31A41BCDAE8C00C74544 /* ConstitutionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConstitutionTests.m; sourceTree = "<group>"; };
+		534F31AF1BCDB04A00C74544 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		534F31B01BCDB04A00C74544 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		534F31B21BCDB05E00C74544 /* Proposal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Proposal.h; sourceTree = "<group>"; };
+		534F31B31BCDB05E00C74544 /* Proposal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Proposal.m; sourceTree = "<group>"; };
+		534F31B51BCDB06800C74544 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		534F31B61BCDB06900C74544 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +92,7 @@
 		534F31841BCDAE8C00C74544 /* Constitution */ = {
 			isa = PBXGroup;
 			children = (
+				534F31AE1BCDB03100C74544 /* Model */,
 				534F31891BCDAE8C00C74544 /* AppDelegate.h */,
 				534F318A1BCDAE8C00C74544 /* AppDelegate.m */,
 				534F318F1BCDAE8C00C74544 /* ViewController.h */,
@@ -120,6 +130,19 @@
 				534F31A31BCDAE8C00C74544 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		534F31AE1BCDB03100C74544 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				534F31AF1BCDB04A00C74544 /* User.h */,
+				534F31B01BCDB04A00C74544 /* User.m */,
+				534F31B21BCDB05E00C74544 /* Proposal.h */,
+				534F31B31BCDB05E00C74544 /* Proposal.m */,
+				534F31B51BCDB06800C74544 /* Comment.h */,
+				534F31B61BCDB06900C74544 /* Comment.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,10 +245,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				534F31B71BCDB06900C74544 /* Comment.m in Sources */,
+				534F31B11BCDB04A00C74544 /* User.m in Sources */,
 				534F318E1BCDAE8C00C74544 /* Constitution.xcdatamodeld in Sources */,
 				534F318B1BCDAE8C00C74544 /* AppDelegate.m in Sources */,
 				534F31911BCDAE8C00C74544 /* ViewController.m in Sources */,
 				534F31881BCDAE8C00C74544 /* main.m in Sources */,
+				534F31B41BCDB05E00C74544 /* Proposal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
