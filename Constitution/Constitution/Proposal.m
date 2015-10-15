@@ -24,32 +24,27 @@
 
 - (NSInteger)getProposalId
 {
-    // TODO: return proposal id
-    return 0;
+    return self.proposalId;
 }
 
 - (NSString *)getProposal
 {
-    // TODO: return proposal
-    return @"";
+    return self.proposal;
 }
 
 - (NSArray *)getComments
 {
-    // TODO: return comments
-    return @[];
+    return self.comments;
 }
 
 - (NSInteger)getNumApproval
 {
-    // TODO: return number of approvals
-    return 0;
+    return self.numApproval;
 }
 
 - (NSInteger)getNumDisapproval
 {
-    // TODO: return number of disapprovals
-    return 0;
+    return self.numDisapproval;
 }
 
 - (void)approveWithUserId:(NSInteger)userId block:(void (^)(BOOL, NSError *))result
