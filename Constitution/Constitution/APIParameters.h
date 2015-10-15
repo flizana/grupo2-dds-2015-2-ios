@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 /* Users */
+FOUNDATION_EXPORT NSString *const UserParameter;
+FOUNDATION_EXPORT NSString *const UserIdParameter;
 FOUNDATION_EXPORT NSString *const FirstNameParameter;
 FOUNDATION_EXPORT NSString *const LastNameParameter;
 FOUNDATION_EXPORT NSString *const PasswordParameter;

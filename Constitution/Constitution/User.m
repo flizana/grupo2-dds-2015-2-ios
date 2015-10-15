@@ -144,6 +144,8 @@ static User *currentUser = nil;
                     BOOL success = (BOOL)[(NSNumber *)[responseDict objectForKey:SuccessParamater] boolValue];
                     if (success){
                         NSLog(@"Sign Up Successful!");
+                        NSDictionary *user = (NSDictionary *)[responseDict objectForKey:UserParameter];
+                        [User setCurrentUser:user];
                         result(YES, nil);
                     } else {
                         NSLog(@"Error signing up user");
@@ -217,7 +219,16 @@ static User *currentUser = nil;
 
 + (void)setCurrentUser:(NSDictionary *)user
 {
-    
+    if (!currentUser){
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^(void){
+            currentUser = [[User alloc] init];
+            currentUser.userId = [(NSNumber *)[user objectForKey:UserIdParameter] integerValue];
+            currentUser.firstName = [user objectForKey:FirstNameParameter];
+            currentUser.lastName = [user objectForKey:LastNameParameter];
+            currentUser.email = [user objectForKey:EmailParameter];
+        });
+    }
 }
 
 + (void)logInWithEmail:(NSString *)email password:(NSString *)password block:(void (^)(BOOL success, NSError *error))result
@@ -246,6 +257,8 @@ static User *currentUser = nil;
                     BOOL success = (BOOL)[(NSNumber *)[responseDict objectForKey:SuccessParamater] boolValue];
                     if (success){
                         NSLog(@"Log In Successful!");
+                        NSDictionary *user = (NSDictionary *)[responseDict objectForKey:UserParameter];
+                        [User setCurrentUser:user];
                         result(YES, nil);
                     } else {
                         NSLog(@"Error logging in user");
@@ -264,6 +277,11 @@ static User *currentUser = nil;
     } else {
         result(NO, [NSError errorWithDomain:LogInFieldNotSetErrorDomain code:LogInFieldNotSetErrorCode userInfo:nil]);
     }
+}
+
++ (void)logOut
+{
+    currentUser = nil;
 }
 
 @end

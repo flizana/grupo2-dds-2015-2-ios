@@ -9,6 +9,8 @@
 #import "APIParameters.h"
 
 /* Users */
+NSString *const UserParameter = @"user";
+NSString *const UserIdParameter = @"user_id";
 NSString *const FirstNameParameter = @"first_name";
 NSString *const LastNameParameter = @"last_name";
 NSString *const PasswordParameter = @"password";
