@@ -11,6 +11,7 @@
 #import "Network.h"
 #import "APIEndpoints.h"
 #import "APIParameters.h"
+#import "User.h"
 #import <AFNetworking/AFNetworking.h>
 #import <Reachability/Reachability.h>
 
@@ -73,83 +74,84 @@
     self.numDisapproval--;
 }
 
-- (void)approveWithUserId:(NSInteger)userId block:(void (^)(BOOL, NSError *))result
+- (void)approveWithBlock:(void (^)(BOOL, NSError *))result
 {
-    if (userId){
-        if (userId != 0){
+    User *currentUser = [User currentUser];
+    if (currentUser){
+        
+        NSString *token = [currentUser getUserToken];
             
-            // Set information into NSDictionary
-            NSDictionary *params = @{};
+        // Set information into NSDictionary
+        NSDictionary *params = @{ProposalIdParameter: [NSNumber numberWithInteger:self.proposalId],
+                                 ProposalUserIdParameter: [NSNumber numberWithInteger:[currentUser getUserId]],
+                                 UserTokenParameter: token};
             
-            // Set endpoint URL
-            NSString *approveEndpointURL = [NSString stringWithFormat:@"%@%@", BackendEndpoint, ProposalApproveEndpoint];
+        // Set endpoint URL
+        NSString *approveEndpointURL = [NSString stringWithFormat:@"%@%@", BackendEndpoint, ProposalApproveEndpoint];
             
-            AFHTTPSessionManager *manager = [Network sessionManager];
+        AFHTTPSessionManager *manager = [Network sessionManager];
             
-            // Check if internet connection is available
-            if ([Reachability reachabilityForInternetConnection]){
-                [manager POST:approveEndpointURL parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
-                    NSDictionary *responseDict = (NSDictionary *)responseObject;
-                    BOOL success = (BOOL)[(NSNumber *)[responseDict objectForKey:SuccessParamater] boolValue];
-                    if (success){
-                        NSLog(@"Proposal Approve Successful!");
-                        result(YES, nil);
-                    } else {
-                        NSLog(@"Error approving proposal");
-                        result(NO, [NSError errorWithDomain:InternalServerErrorDomain code:InternalServerErrorCode userInfo:nil]);
-                    }
-                }failure:^(NSURLSessionDataTask *task, NSError *error){
-                    NSLog(@"Error approving proposal: [%@]", error);
-                    result(NO, error);
-                }];
-            } else {
-                result(NO, [NSError errorWithDomain:NoInternetConnectionErrorDomain code:NoInternetConnectionErrorCode userInfo:nil]);
-            }
+        // Check if internet connection is available
+        if ([Reachability reachabilityForInternetConnection]){
+            [manager POST:approveEndpointURL parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
+                NSDictionary *responseDict = (NSDictionary *)responseObject;
+                BOOL success = (BOOL)[(NSNumber *)[responseDict objectForKey:SuccessParamater] boolValue];
+                if (success){
+                    NSLog(@"Proposal Approve Successful!");
+                    result(YES, nil);
+                } else {
+                    NSLog(@"Error approving proposal");
+                    result(NO, [NSError errorWithDomain:InternalServerErrorDomain code:InternalServerErrorCode userInfo:nil]);
+                }
+            }failure:^(NSURLSessionDataTask *task, NSError *error){
+                NSLog(@"Error approving proposal: [%@]", error);
+                result(NO, error);
+            }];
         } else {
-            result(NO, [NSError errorWithDomain:ApprovalUserIdBlankErrorDomain code:ApprovalUserIdBlankErrorCode userInfo:nil]);
+            result(NO, [NSError errorWithDomain:NoInternetConnectionErrorDomain code:NoInternetConnectionErrorCode userInfo:nil]);
         }
     } else {
-        result(NO, [NSError errorWithDomain:ApprovalUserIdNotSetErrorDomain code:ApprovalUserIdNotSetErrorCode userInfo:nil]);
+        result(NO, [NSError errorWithDomain:CurrentUserNilErrorDomain code:CurrentUserNilErrorCode userInfo:nil]);
     }
 }
 
-- (void)disapproveWithUserId:(NSInteger)userId block:(void (^)(BOOL, NSError *))result
+- (void)disapproveWithBlock:(void (^)(BOOL, NSError *))result
 {
-    if (userId){
-        if (userId != 0){
+    User *currentUser = [User currentUser];
+    if (currentUser){
+        NSString *token = [currentUser getUserToken];
             
-            // Set information into NSDictionary
-            NSDictionary *params = @{};
+        // Set information into NSDictionary
+        NSDictionary *params = @{ProposalIdParameter: [NSNumber numberWithInteger:self.proposalId],
+                                 ProposalUserIdParameter: [NSNumber numberWithInteger:[currentUser getUserId]],
+                                 UserTokenParameter: token};
             
-            // Set endpoint URL
-            NSString *disapproveEndpointURL = [NSString stringWithFormat:@"%@%@", BackendEndpoint, ProposalDisapproveEndpoint];
+        // Set endpoint URL
+        NSString *disapproveEndpointURL = [NSString stringWithFormat:@"%@%@", BackendEndpoint, ProposalDisapproveEndpoint];
             
-            AFHTTPSessionManager *manager = [Network sessionManager];
+        AFHTTPSessionManager *manager = [Network sessionManager];
             
-            // Check if internet connection is available
-            if ([Reachability reachabilityForInternetConnection]){
-                [manager POST:disapproveEndpointURL parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
-                    NSDictionary *responseDict = (NSDictionary *)responseObject;
-                    BOOL success = (BOOL)[(NSNumber *)[responseDict objectForKey:SuccessParamater] boolValue];
-                    if (success){
-                        NSLog(@"Proposal Disapprove Successful!");
-                        result(YES, nil);
-                    } else {
-                        NSLog(@"Error disapproving proposal");
-                        result(NO, [NSError errorWithDomain:InternalServerErrorDomain code:InternalServerErrorCode userInfo:nil]);
-                    }
-                }failure:^(NSURLSessionDataTask *task, NSError *error){
-                    NSLog(@"Error disapproving proposal: [%@]", error);
-                    result(NO, error);
-                }];
-            } else {
-                result(NO, [NSError errorWithDomain:NoInternetConnectionErrorDomain code:NoInternetConnectionErrorCode userInfo:nil]);
-            }
+        // Check if internet connection is available
+        if ([Reachability reachabilityForInternetConnection]){
+            [manager POST:disapproveEndpointURL parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
+                NSDictionary *responseDict = (NSDictionary *)responseObject;
+                BOOL success = (BOOL)[(NSNumber *)[responseDict objectForKey:SuccessParamater] boolValue];
+                if (success){
+                    NSLog(@"Proposal Disapprove Successful!");
+                    result(YES, nil);
+                } else {
+                    NSLog(@"Error disapproving proposal");
+                    result(NO, [NSError errorWithDomain:InternalServerErrorDomain code:InternalServerErrorCode userInfo:nil]);
+                }
+            }failure:^(NSURLSessionDataTask *task, NSError *error){
+                NSLog(@"Error disapproving proposal: [%@]", error);
+                result(NO, error);
+            }];
         } else {
-            result(NO, [NSError errorWithDomain:DisapprovalUserIdBlankErrorDomain code:DisapprovalUserIdBlankErrorCode userInfo:nil]);
+            result(NO, [NSError errorWithDomain:NoInternetConnectionErrorDomain code:NoInternetConnectionErrorCode userInfo:nil]);
         }
     } else {
-        result(NO, [NSError errorWithDomain:DisapprovalUserIdNotSetErrorDomain code:DisapprovalUserIdNotSetErrorCode userInfo:nil]);
+        result(NO, [NSError errorWithDomain:CurrentUserNilErrorDomain code:CurrentUserNilErrorCode userInfo:nil]);
     }
 }
 

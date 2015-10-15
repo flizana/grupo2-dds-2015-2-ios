@@ -32,6 +32,7 @@
 
 #pragma mark - Class Methods
 
++ (instancetype)currentUser;
 + (void)logInWithEmail:(NSString *)email password:(NSString *)password block:(void (^)(BOOL, NSError *))result;
 
 @end

@@ -32,14 +32,5 @@ NSInteger const LogInFieldNotSetErrorCode = 302;
 NSString *const LogInFieldBlankErrorDomain = @"Log in field blank";
 NSInteger const LogInFieldBlankErrorCode = 303;
 
-NSString *const ApprovalUserIdNotSetErrorDomain = @"Approval user id not set";
-NSInteger const ApprovalUserIdNotSetErrorCode = 402;
-
-NSString *const ApprovalUserIdBlankErrorDomain = @"Approval user id blank";
-NSInteger const ApprovalUserIdBlankErrorCode = 403;
-
-NSString *const DisapprovalUserIdNotSetErrorDomain = @"Disapproval user id not set";
-NSInteger const DisapprovalUserIdNotSetErrorCode = 502;
-
-NSString *const DisapprovalUserIdBlankErrorDomain = @"Disapproval user id blank";
-NSInteger const DisapprovalUserIdBlankErrorCode = 503;
+NSString *const ApprovalUserIdNotSetErrorDomain = @"Current user is nil";
+NSInteger const ApprovalUserIdNotSetErrorCode = 400;

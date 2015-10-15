@@ -19,5 +19,16 @@ FOUNDATION_EXPORT NSString *const AgeParameter;
 FOUNDATION_EXPORT NSString *const RegionParameter;
 FOUNDATION_EXPORT NSString *const CityParameter;
 
+/* Proposal */
+FOUNDATION_EXPORT NSString *const ProposalIdParameter;
+FOUNDATION_EXPORT NSString *const ProposalUserIdParameter;
+
+/* Comment */
+FOUNDATION_EXPORT NSString *const CommentIdParameter;
+FOUNDATION_EXPORT NSString *const CommentUserIdParameter;
+
+/* HTTP Request */
+FOUNDATION_EXPORT NSString *const UserTokenParameter;
+
 /* HTTP Response */
 FOUNDATION_EXPORT NSString *const SuccessParamater;

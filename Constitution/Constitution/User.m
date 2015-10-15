@@ -31,6 +31,8 @@
 
 @end
 
+static User *currentUser = nil;
+
 @implementation User
 
 #pragma mark - Instance Methods
@@ -207,6 +209,16 @@
 }
 
 #pragma mark - Class Methods
+
++ (instancetype)currentUser
+{
+    return currentUser;
+}
+
++ (void)setCurrentUser:(NSDictionary *)user
+{
+    
+}
 
 + (void)logInWithEmail:(NSString *)email password:(NSString *)password block:(void (^)(BOOL success, NSError *error))result
 {

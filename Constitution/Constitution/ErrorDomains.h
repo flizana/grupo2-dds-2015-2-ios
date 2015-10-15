@@ -32,14 +32,5 @@ FOUNDATION_EXPORT NSInteger const LogInFieldNotSetErrorCode;
 FOUNDATION_EXPORT NSString *const LogInFieldBlankErrorDomain;
 FOUNDATION_EXPORT NSInteger const LogInFieldBlankErrorCode;
 
-FOUNDATION_EXPORT NSString *const ApprovalUserIdNotSetErrorDomain;
-FOUNDATION_EXPORT NSInteger const ApprovalUserIdNotSetErrorCode;
-
-FOUNDATION_EXPORT NSString *const ApprovalUserIdBlankErrorDomain;
-FOUNDATION_EXPORT NSInteger const ApprovalUserIdBlankErrorCode;
-
-FOUNDATION_EXPORT NSString *const DisapprovalUserIdNotSetErrorDomain;
-FOUNDATION_EXPORT NSInteger const DisapprovalUserIdNotSetErrorCode;
-
-FOUNDATION_EXPORT NSString *const DisapprovalUserIdBlankErrorDomain;
-FOUNDATION_EXPORT NSInteger const DisapprovalUserIdBlankErrorCode;
+FOUNDATION_EXPORT NSString *const CurrentUserNilErrorDomain;
+FOUNDATION_EXPORT NSInteger const CurrentUserNilErrorCode;

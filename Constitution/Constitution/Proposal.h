@@ -17,8 +17,8 @@
 - (NSArray *)getComments;
 - (NSInteger)getNumApproval;
 - (NSInteger)getNumDisapproval;
-- (void)approveWithUserId:(NSInteger)userId block:(void (^)(BOOL, NSError *))result;
-- (void)disapproveWithUserId:(NSInteger)userId block:(void (^)(BOOL, NSError *))result;
+- (void)approveWithBlock:(void (^)(BOOL, NSError *))result;
+- (void)disapproveWithBlock:(void (^)(BOOL, NSError *))result;
 - (void)insertComment:(NSString *)comment block:(void (^)(BOOL, NSError *))result;
 
 @end
