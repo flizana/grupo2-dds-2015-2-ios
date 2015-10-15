@@ -17,3 +17,4 @@ NSString *const ProposalApproveEndpoint = @"";
 NSString *const ProposalDisapproveEndpoint = @"";
 NSString *const CommentApproveEndpoint = @"";
 NSString *const CommentDisapproveEndpoint = @"";
+NSString *const InsertCommentEndpoint = @"";

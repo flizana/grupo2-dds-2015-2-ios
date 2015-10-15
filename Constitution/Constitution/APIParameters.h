@@ -28,6 +28,9 @@ FOUNDATION_EXPORT NSString *const ProposalUserIdParameter;
 /* Comment */
 FOUNDATION_EXPORT NSString *const CommentIdParameter;
 FOUNDATION_EXPORT NSString *const CommentUserIdParameter;
+FOUNDATION_EXPORT NSString *const CommentCommentParameter;
+FOUNDATION_EXPORT NSString *const CommentNumApprovalParameter;
+FOUNDATION_EXPORT NSString *const CommentNumDisapprovalParameter;
 
 /* HTTP Request */
 FOUNDATION_EXPORT NSString *const UserTokenParameter;

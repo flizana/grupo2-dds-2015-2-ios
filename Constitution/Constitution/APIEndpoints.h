@@ -16,3 +16,4 @@ FOUNDATION_EXPORT NSString *const ProposalApproveEndpoint;
 FOUNDATION_EXPORT NSString *const ProposalDisapproveEndpoint;
 FOUNDATION_EXPORT NSString *const CommentApproveEndpoint;
 FOUNDATION_EXPORT NSString *const CommentDisapproveEndpoint;
+FOUNDATION_EXPORT NSString *const InsertCommentEndpoint;
