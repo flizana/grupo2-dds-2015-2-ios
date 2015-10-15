@@ -12,6 +12,7 @@
 #import "APIEndpoints.h"
 #import "APIParameters.h"
 #import "ErrorDomains.h"
+#import "Network.h"
 #import <AFNetworking/AFNetworking.h>
 #import <Reachability/Reachability.h>
 
@@ -118,7 +119,7 @@
         // Check if a field is set but blank
         if (![self.password isEqualToString:@""] && ![self.firstName isEqualToString:@""] && ![self.lastName isEqualToString:@""] && ![self.email isEqualToString:@""] && ![self.gender isEqualToString:@""] && ![self.birthDate isEqual:[NSDate date]] && self.age != 0 && ![self.region isEqualToString:@""] && ![self.city isEqualToString:@""]){
             
-            // Set information into NSDictinary
+            // Set information into NSDictionary
             NSDictionary *params = @{FirstNameParameter: self.firstName,
                                      LastNameParameter: self.lastName,
                                      PasswordParameter: self.password,
@@ -132,7 +133,7 @@
             // Set endpoint URL
             NSString *signUpEndpointURL = [NSString stringWithFormat:@"%@%@", BackendEndpoint, SignUpEndpoint];
             
-            AFHTTPSessionManager *manager = [self sessionManager];
+            AFHTTPSessionManager *manager = [Network sessionManager];
             
             // Check if internet connection is available
             if ([Reachability reachabilityForInternetConnection]){
@@ -168,7 +169,7 @@
         // Check if a field is set but blank
         if (![self.firstName isEqualToString:@""] && ![self.lastName isEqualToString:@""] && ![self.email isEqualToString:@""]){
             
-            // Set information into NSDictinary
+            // Set information into NSDictionary
             NSDictionary *params = @{FirstNameParameter: self.firstName,
                                      LastNameParameter: self.lastName,
                                      EmailParameter: self.email};
@@ -176,7 +177,7 @@
             // Set endpoint URL
             NSString *saveUserEndpointURL = [NSString stringWithFormat:@"%@%@", BackendEndpoint, SaveUserEndpoint];
             
-            AFHTTPSessionManager *manager = [self sessionManager];
+            AFHTTPSessionManager *manager = [Network sessionManager];
             
             // Check if internet connection is available
             if ([Reachability reachabilityForInternetConnection]){
@@ -205,20 +206,52 @@
     }
 }
 
-- (AFHTTPSessionManager *)sessionManager
-{
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    return manager;
-}
-
 #pragma mark - Class Methods
 
 + (void)logInWithEmail:(NSString *)email password:(NSString *)password block:(void (^)(BOOL success, NSError *error))result
 {
-    // TODO: log in with credentials against server
+    // Check if credentials are set
+    if (email && password){
+        // Check if credentials are set but blank
+        if (![email isEqualToString:@""] && ![password isEqualToString:@""]){
+            
+            // Hash password
+            NSString *hashedPassword = [Crypto SHA256encrypt:password];
+            
+            // Set information into NSDictionary
+            NSDictionary *params = @{EmailParameter: email,
+                                     PasswordParameter: hashedPassword};
+            
+            // Set endpoint URL
+            NSString *logInEndpointURL = [NSString stringWithFormat:@"%@%@", BackendEndpoint, LogInEndpoint];
+            
+            AFHTTPSessionManager *manager = [Network sessionManager];
+            
+            // Check if internet connection is available
+            if ([Reachability reachabilityForInternetConnection]){
+                [manager POST:logInEndpointURL parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
+                    NSDictionary *responseDict = (NSDictionary *)responseObject;
+                    BOOL success = (BOOL)[(NSNumber *)[responseDict objectForKey:SuccessParamater] boolValue];
+                    if (success){
+                        NSLog(@"Log In Successful!");
+                        result(YES, nil);
+                    } else {
+                        NSLog(@"Error logging in user");
+                        result(NO, [NSError errorWithDomain:InternalServerErrorDomain code:InternalServerErrorCode userInfo:nil]);
+                    }
+                }failure:^(NSURLSessionDataTask *task, NSError *error){
+                    NSLog(@"Error logging in user: [%@]", error);
+                    result(NO, error);
+                }];
+            } else {
+                result(NO, [NSError errorWithDomain:NoInternetConnectionErrorDomain code:NoInternetConnectionErrorCode userInfo:nil]);
+            }
+        } else {
+            result(NO, [NSError errorWithDomain:LogInFieldBlankErrorDomain code:LogInFieldBlankErrorCode userInfo:nil]);
+        }
+    } else {
+        result(NO, [NSError errorWithDomain:LogInFieldNotSetErrorDomain code:LogInFieldNotSetErrorCode userInfo:nil]);
+    }
 }
 
 @end

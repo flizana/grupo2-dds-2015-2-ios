@@ -12,6 +12,7 @@
 		534457951BD00894000C6F81 /* APIEndpoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 534457941BD00894000C6F81 /* APIEndpoints.m */; };
 		534457981BD00F45000C6F81 /* ErrorDomains.m in Sources */ = {isa = PBXBuildFile; fileRef = 534457971BD00F45000C6F81 /* ErrorDomains.m */; };
 		5344579B1BD01100000C6F81 /* APIParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 5344579A1BD01100000C6F81 /* APIParameters.m */; };
+		5344579E1BD026EB000C6F81 /* Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 5344579D1BD026EB000C6F81 /* Network.m */; };
 		534F31881BCDAE8C00C74544 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 534F31871BCDAE8C00C74544 /* main.m */; };
 		534F318B1BCDAE8C00C74544 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 534F318A1BCDAE8C00C74544 /* AppDelegate.m */; };
 		534F318E1BCDAE8C00C74544 /* Constitution.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 534F318C1BCDAE8C00C74544 /* Constitution.xcdatamodeld */; };
@@ -48,6 +49,8 @@
 		534457971BD00F45000C6F81 /* ErrorDomains.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorDomains.m; sourceTree = "<group>"; };
 		534457991BD01100000C6F81 /* APIParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIParameters.h; sourceTree = "<group>"; };
 		5344579A1BD01100000C6F81 /* APIParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIParameters.m; sourceTree = "<group>"; };
+		5344579C1BD026EB000C6F81 /* Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Network.h; sourceTree = "<group>"; };
+		5344579D1BD026EB000C6F81 /* Network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Network.m; sourceTree = "<group>"; };
 		534F31821BCDAE8C00C74544 /* Constitution.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Constitution.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		534F31861BCDAE8C00C74544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		534F31871BCDAE8C00C74544 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -112,6 +115,8 @@
 				534457971BD00F45000C6F81 /* ErrorDomains.m */,
 				534457991BD01100000C6F81 /* APIParameters.h */,
 				5344579A1BD01100000C6F81 /* APIParameters.m */,
+				5344579C1BD026EB000C6F81 /* Network.h */,
+				5344579D1BD026EB000C6F81 /* Network.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -337,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5344579E1BD026EB000C6F81 /* Network.m in Sources */,
 				5344579B1BD01100000C6F81 /* APIParameters.m in Sources */,
 				534F31B71BCDB06900C74544 /* Comment.m in Sources */,
 				534F31B11BCDB04A00C74544 /* User.m in Sources */,
