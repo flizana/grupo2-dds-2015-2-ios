@@ -19,6 +19,19 @@
 
 @implementation Comment
 
+- (id)initWithComment:(NSString *)comment
+{
+    if ((self = [super init])){
+        self.comment = comment;
+        self.numApproval = 0;
+        self.numDisapproval = 0;
+        
+        return self;
+    }
+    
+    return nil;
+}
+
 - (NSInteger)getCommentId
 {
     // TODO: return comment id

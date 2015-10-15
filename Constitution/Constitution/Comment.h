@@ -12,6 +12,7 @@
 
 #pragma mark - Instance Methods
 
+- (id)initWithComment:(NSString *)comment;
 - (NSInteger)getCommentId;
 - (NSString *)getComment;
 - (NSInteger)getNumApproval;
