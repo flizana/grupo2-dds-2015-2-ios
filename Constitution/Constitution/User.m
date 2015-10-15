@@ -20,7 +20,6 @@
 @property (nonatomic) NSInteger age;
 @property (nonatomic, assign) NSString *region;
 @property (nonatomic, assign) NSString *city;
-@property (strong, nonatomic) NSString *userToken;
 
 @end
 
@@ -30,71 +29,67 @@
 
 - (NSInteger)getUserId
 {
-    // TODO: return user id
-    return 0;
+    return self.userId;
 }
 
 - (void)setPassword:(NSString *)password
 {
-    // TODO: set password
+    self.password = password;
 }
 
 - (NSString *)getFirstName
 {
-    // TODO: return first name
-    return @"";
+    return self.firstName;
 }
 
 - (void)setFirstName:(NSString *)firstName
 {
-    // TODO: set first name
+    self.firstName = firstName;
 }
 
 - (NSString *)getLastName
 {
-    // TODO: return last name
-    return @"";
+    return self.lastName;
 }
 
 - (void)setLastName:(NSString *)lastName
 {
-    // TODO: set last name
+    self.lastName = lastName;
 }
 
 - (NSString *)getEmail
 {
-    // TODO: return email
-    return @"";
+    return self.email;
 }
 
 - (void)setEmail:(NSString *)email
 {
-    // TODO: set email
+    self.email = email;
 }
 
 - (void)setGender:(NSString *)gender
 {
-    // TODO: set gender
+    self.gender = gender;
 }
 
 - (void)setBirthDate:(NSDate *)birthDate
 {
-    // TODO: set birth date
+    self.birthDate = birthDate;
 }
 
 - (void)setAge:(NSInteger)age
 {
-    // TODO: set age
+    self.age = age;
 }
 
 - (void)setRegion:(NSString *)region
 {
-    // TODO: set region
+    self.region = region;
 }
 
 - (void)setCity:(NSString *)city
 {
-    // TODO: set city
+    self.city = city;
 }
 
 - (NSString *)getUserToken

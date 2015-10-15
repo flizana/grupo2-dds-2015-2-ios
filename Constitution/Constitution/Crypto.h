@@ -10,4 +10,18 @@
 
 @interface Crypto : NSObject
 
+#pragma mark - Class Methods
+
++ (NSString *)generateRandomString;
+
++ (NSString *)hexEncode:(NSString *)string;
++ (NSData *)hexDecode:(NSString *)hexString;
+
++ (NSData *)sha256HMAC:(NSData *)data withKey:(NSString *)key;
+
++ (NSData *)AES128Decrypt:(NSData *)data key:(NSData *)key withIV:(NSData *)iv;
++ (NSData *)decrypt:(NSString *)data key:(NSString *)key;
+
++ (NSString *)SHA256encrypt:(NSString *)string;
+
 @end
