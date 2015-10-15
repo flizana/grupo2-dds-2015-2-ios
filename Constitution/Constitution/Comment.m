@@ -34,26 +34,22 @@
 
 - (NSInteger)getCommentId
 {
-    // TODO: return comment id
-    return 0;
+    return self.commentId;
 }
 
 - (NSString *)getComment
 {
-    // TODO: return comment
-    return @"";
+    return self.comment;
 }
 
 - (NSInteger)getNumApproval
 {
-    // TODO: return number of approvals
-    return 0;
+    return self.numApproval;
 }
 
 - (NSInteger)getNumDisapproval
 {
-    // TODO: return number of disapprovals
-    return 0;
+    return self.numDisapproval;
 }
 
 - (void)approveWithUserId:(NSInteger)userId block:(void (^)(BOOL, NSError *))result
