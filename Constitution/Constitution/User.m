@@ -7,6 +7,7 @@
 //
 
 #import "User.h"
+#import "KeychainAccess.h"
 
 @interface User()
 
@@ -94,15 +95,14 @@
 
 - (NSString *)getUserToken
 {
-    // TODO: get user token
-    // This is more tricky, first retrieve from keychain and then return it
-    return @"";
+    KeychainAccess *keychain = [[KeychainAccess alloc] init];
+    return (NSString *)[keychain myObjectForKey:self.email];
 }
 
 - (void)setUserToken:(NSString *)userToken
 {
-    // TODO: set user token
-    // This is more tricky, save token into keychain
+    KeychainAccess *keychain = [[KeychainAccess alloc] init];
+    [keychain mySetObject:userToken forKey:self.email];
 }
 
 - (void)signUp:(void (^)(BOOL, NSError *))result
