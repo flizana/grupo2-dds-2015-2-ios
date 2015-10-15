@@ -13,3 +13,7 @@ NSString *const BackendEndpoint = @"";
 NSString *const SignUpEndpoint = @"";
 NSString *const LogInEndpoint = @"";
 NSString *const SaveUserEndpoint = @"";
+NSString *const ProposalApproveEndpoint = @"";
+NSString *const ProposalDisapproveEndpoint = @"";
+NSString *const CommentApproveEndpoint = @"";
+NSString *const CommentDisapproveEndpoint = @"";

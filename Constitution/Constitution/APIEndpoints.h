@@ -12,3 +12,7 @@ FOUNDATION_EXPORT NSString *const BackendEndpoint;
 FOUNDATION_EXPORT NSString *const SignUpEndpoint;
 FOUNDATION_EXPORT NSString *const LogInEndpoint;
 FOUNDATION_EXPORT NSString *const SaveUserEndpoint;
+FOUNDATION_EXPORT NSString *const ProposalApproveEndpoint;
+FOUNDATION_EXPORT NSString *const ProposalDisapproveEndpoint;
+FOUNDATION_EXPORT NSString *const CommentApproveEndpoint;
+FOUNDATION_EXPORT NSString *const CommentDisapproveEndpoint;
