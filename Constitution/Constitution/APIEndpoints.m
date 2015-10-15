@@ -12,3 +12,4 @@
 NSString *const BackendEndpoint = @"";
 NSString *const SignUpEndpoint = @"";
 NSString *const LogInEndpoint = @"";
+NSString *const SaveUserEndpoint = @"";

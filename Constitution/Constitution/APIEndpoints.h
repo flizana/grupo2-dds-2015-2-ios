@@ -11,3 +11,4 @@
 FOUNDATION_EXPORT NSString *const BackendEndpoint;
 FOUNDATION_EXPORT NSString *const SignUpEndpoint;
 FOUNDATION_EXPORT NSString *const LogInEndpoint;
+FOUNDATION_EXPORT NSString *const SaveUserEndpoint;

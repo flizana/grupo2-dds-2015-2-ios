@@ -19,3 +19,9 @@ FOUNDATION_EXPORT NSInteger const SignUpFieldBlankErrorCode;
 
 FOUNDATION_EXPORT NSString *const SignUpFieldNotSetErrorDomain;
 FOUNDATION_EXPORT NSInteger const SignUpFieldNotSetErrorCode;
+
+FOUNDATION_EXPORT NSString *const SaveUserFieldNotSetErrorDomain;
+FOUNDATION_EXPORT NSInteger const SaveUserFieldNotSetErrorCode;
+
+FOUNDATION_EXPORT NSString *const SaveUserFieldBlankErrorDomain;
+FOUNDATION_EXPORT NSInteger const SaveUserFieldBlankErrorCode;

@@ -111,7 +111,7 @@
     [keychain mySetObject:userToken forKey:self.email];
 }
 
-- (void)signUp:(void (^)(BOOL, NSError *))result
+- (void)signUp:(void (^)(BOOL success, NSError *error))result
 {
     // Check if all fields are set
     if (self.password && self.firstName && self.lastName && self.email && self.gender && self.birthDate && self.age && self.region && self.city){
@@ -132,9 +132,7 @@
             // Set endpoint URL
             NSString *signUpEndpointURL = [NSString stringWithFormat:@"%@%@", BackendEndpoint, SignUpEndpoint];
             
-            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-            manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-            manager.responseSerializer = [AFJSONResponseSerializer serializer];
+            AFHTTPSessionManager *manager = [self sessionManager];
             
             // Check if internet connection is available
             if ([Reachability reachabilityForInternetConnection]){
@@ -163,15 +161,62 @@
     }
 }
 
-- (void)save:(void (^)(BOOL, NSError *))result
+- (void)save:(void (^)(BOOL success, NSError *error))result
 {
-    // TODO: save user against server
+    // Check if all fields are set
+    if (self.firstName && self.lastName && self.email){
+        // Check if a field is set but blank
+        if (![self.firstName isEqualToString:@""] && ![self.lastName isEqualToString:@""] && ![self.email isEqualToString:@""]){
+            
+            // Set information into NSDictinary
+            NSDictionary *params = @{FirstNameParameter: self.firstName,
+                                     LastNameParameter: self.lastName,
+                                     EmailParameter: self.email};
+            
+            // Set endpoint URL
+            NSString *saveUserEndpointURL = [NSString stringWithFormat:@"%@%@", BackendEndpoint, SaveUserEndpoint];
+            
+            AFHTTPSessionManager *manager = [self sessionManager];
+            
+            // Check if internet connection is available
+            if ([Reachability reachabilityForInternetConnection]){
+                [manager POST:saveUserEndpointURL parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
+                    NSDictionary *responseDict = (NSDictionary *)responseObject;
+                    BOOL success = (BOOL)[(NSNumber *)[responseDict objectForKey:SuccessParamater] boolValue];
+                    if (success){
+                        NSLog(@"User Saved Successfully!");
+                        result(YES, nil);
+                    } else {
+                        NSLog(@"Error saving user");
+                        result(NO, [NSError errorWithDomain:InternalServerErrorDomain code:InternalServerErrorCode userInfo:nil]);
+                    }
+                }failure:^(NSURLSessionDataTask *task, NSError *error){
+                    NSLog(@"Error saving user: [%@]", error);
+                    result(NO, error);
+                }];
+            } else {
+                result(NO, [NSError errorWithDomain:NoInternetConnectionErrorDomain code:NoInternetConnectionErrorCode userInfo:nil]);
+            }
+        } else {
+            result(NO, [NSError errorWithDomain:SaveUserFieldBlankErrorDomain code:SaveUserFieldBlankErrorCode userInfo:nil]);
+        }
+    } else {
+        result(NO, [NSError errorWithDomain:SaveUserFieldNotSetErrorDomain code:SaveUserFieldNotSetErrorCode userInfo:nil]);
+    }
 }
 
+- (AFHTTPSessionManager *)sessionManager
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    return manager;
+}
 
 #pragma mark - Class Methods
 
-+ (void)logInWithEmail:(NSString *)email password:(NSString *)password block:(void (^)(BOOL, NSError *))result
++ (void)logInWithEmail:(NSString *)email password:(NSString *)password block:(void (^)(BOOL success, NSError *error))result
 {
     // TODO: log in with credentials against server
 }

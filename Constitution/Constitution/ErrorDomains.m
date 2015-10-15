@@ -19,3 +19,9 @@ NSInteger const SignUpFieldBlankErrorCode = 103;
 
 NSString *const SignUpFieldNotSetErrorDomain = @"Sign up field not set";
 NSInteger const SignUpFieldNotSetErrorCode = 102;
+
+NSString *const SaveUserFieldNotSetErrorDomain = @"Save user field not set";
+NSInteger const SaveUserFieldNotSetErrorCode = 202;
+
+NSString *const SaveUserFieldBlankErrorDomain = @"Save user field blank";
+NSInteger const SaveUserFieldBlankErrorCode = 203;
