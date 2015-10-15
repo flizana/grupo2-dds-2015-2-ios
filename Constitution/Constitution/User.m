@@ -8,6 +8,7 @@
 
 #import "User.h"
 #import "KeychainAccess.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface User()
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5344578F1BD00284000C6F81 /* Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 5344578E1BD00284000C6F81 /* Crypto.m */; };
 		534457921BD002DC000C6F81 /* KeychainAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 534457911BD002DC000C6F81 /* KeychainAccess.m */; };
+		534457951BD00894000C6F81 /* APIEndpoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 534457941BD00894000C6F81 /* APIEndpoints.m */; };
 		534F31881BCDAE8C00C74544 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 534F31871BCDAE8C00C74544 /* main.m */; };
 		534F318B1BCDAE8C00C74544 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 534F318A1BCDAE8C00C74544 /* AppDelegate.m */; };
 		534F318E1BCDAE8C00C74544 /* Constitution.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 534F318C1BCDAE8C00C74544 /* Constitution.xcdatamodeld */; };
@@ -39,6 +40,8 @@
 		5344578E1BD00284000C6F81 /* Crypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Crypto.m; sourceTree = "<group>"; };
 		534457901BD002DC000C6F81 /* KeychainAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainAccess.h; sourceTree = "<group>"; };
 		534457911BD002DC000C6F81 /* KeychainAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainAccess.m; sourceTree = "<group>"; };
+		534457931BD00862000C6F81 /* APIEndpoints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIEndpoints.h; sourceTree = "<group>"; };
+		534457941BD00894000C6F81 /* APIEndpoints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIEndpoints.m; sourceTree = "<group>"; };
 		534F31821BCDAE8C00C74544 /* Constitution.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Constitution.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		534F31861BCDAE8C00C74544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		534F31871BCDAE8C00C74544 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -97,6 +100,8 @@
 				5344578E1BD00284000C6F81 /* Crypto.m */,
 				534457901BD002DC000C6F81 /* KeychainAccess.h */,
 				534457911BD002DC000C6F81 /* KeychainAccess.m */,
+				534457931BD00862000C6F81 /* APIEndpoints.h */,
+				534457941BD00894000C6F81 /* APIEndpoints.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -327,6 +332,7 @@
 				534457921BD002DC000C6F81 /* KeychainAccess.m in Sources */,
 				534F318E1BCDAE8C00C74544 /* Constitution.xcdatamodeld in Sources */,
 				534F318B1BCDAE8C00C74544 /* AppDelegate.m in Sources */,
+				534457951BD00894000C6F81 /* APIEndpoints.m in Sources */,
 				5344578F1BD00284000C6F81 /* Crypto.m in Sources */,
 				534F31911BCDAE8C00C74544 /* ViewController.m in Sources */,
 				534F31881BCDAE8C00C74544 /* main.m in Sources */,
