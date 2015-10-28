@@ -32,5 +32,5 @@ NSInteger const LogInFieldNotSetErrorCode = 302;
 NSString *const LogInFieldBlankErrorDomain = @"Log in field blank";
 NSInteger const LogInFieldBlankErrorCode = 303;
 
-NSString *const ApprovalUserIdNotSetErrorDomain = @"Current user is nil";
-NSInteger const ApprovalUserIdNotSetErrorCode = 400;
+NSString *const CurrentUserNilErrorDomain = @"Current user is nil";
+NSInteger const CurrentUserNilErrorCode = 400;

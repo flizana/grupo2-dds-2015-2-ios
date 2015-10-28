@@ -24,6 +24,7 @@
 		534F31B11BCDB04A00C74544 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 534F31B01BCDB04A00C74544 /* User.m */; };
 		534F31B41BCDB05E00C74544 /* Proposal.m in Sources */ = {isa = PBXBuildFile; fileRef = 534F31B31BCDB05E00C74544 /* Proposal.m */; };
 		534F31B71BCDB06900C74544 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 534F31B61BCDB06900C74544 /* Comment.m */; };
+		53CD1F2B1BE13EFD00773C71 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CD1F2A1BE13EFD00773C71 /* LoginViewController.m */; };
 		D6DCA60B4F2EA7CBCC086DE3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF1519C2878C2B416877FC9 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,8 @@
 		534F31B31BCDB05E00C74544 /* Proposal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Proposal.m; sourceTree = "<group>"; };
 		534F31B51BCDB06800C74544 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
 		534F31B61BCDB06900C74544 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		53CD1F291BE13EFD00773C71 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		53CD1F2A1BE13EFD00773C71 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		7FF1519C2878C2B416877FC9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F95654C29D84BC2EEF52CF4D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,6 +147,7 @@
 		534F31841BCDAE8C00C74544 /* Constitution */ = {
 			isa = PBXGroup;
 			children = (
+				53CD1F281BE13E3C00773C71 /* View Controllers */,
 				5344578C1BD00261000C6F81 /* Utils */,
 				534F31AE1BCDB03100C74544 /* Model */,
 				534F31891BCDAE8C00C74544 /* AppDelegate.h */,
@@ -196,6 +200,15 @@
 				534F31B61BCDB06900C74544 /* Comment.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		53CD1F281BE13E3C00773C71 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				53CD1F291BE13EFD00773C71 /* LoginViewController.h */,
+				53CD1F2A1BE13EFD00773C71 /* LoginViewController.m */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		587AED2E818CDA1055B0A02C /* Pods */ = {
@@ -346,6 +359,7 @@
 				5344579B1BD01100000C6F81 /* APIParameters.m in Sources */,
 				534F31B71BCDB06900C74544 /* Comment.m in Sources */,
 				534F31B11BCDB04A00C74544 /* User.m in Sources */,
+				53CD1F2B1BE13EFD00773C71 /* LoginViewController.m in Sources */,
 				534457981BD00F45000C6F81 /* ErrorDomains.m in Sources */,
 				534457921BD002DC000C6F81 /* KeychainAccess.m in Sources */,
 				534F318E1BCDAE8C00C74544 /* Constitution.xcdatamodeld in Sources */,

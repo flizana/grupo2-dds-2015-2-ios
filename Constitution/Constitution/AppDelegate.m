@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "User.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    // Check if a user is already logged in
+    if (![User currentUser]){
+        // No user is logged in --> show login view
+        self.window.rootViewController = [storyboard instantiateInitialViewController];
+    } else {
+        // User is already logged in --> show proposals view
+        //self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@""];
+    }
     return YES;
 }
 
