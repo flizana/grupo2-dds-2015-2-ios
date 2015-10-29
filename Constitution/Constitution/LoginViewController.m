@@ -91,7 +91,7 @@
                 if (!error){
                     if (success){
                         // Login successful
-                        NSLog(@"Login successful");
+                        [self performSegueWithIdentifier:@"loginSegue" sender:self];
                     } else {
                         NSLog(@"Error logging in...");
                     }

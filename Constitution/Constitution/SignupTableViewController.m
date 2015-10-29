@@ -7,6 +7,7 @@
 //
 
 #import "SignupTableViewController.h"
+#import "User.h"
 
 #define ALPHA @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 #define NUMERIC @"0123456789"
@@ -378,7 +379,55 @@ typedef enum tableViewSection{
 
 - (IBAction)doneBarButtonTapped:(id)sender
 {
-    NSLog(@"done bar button tapped...");
+    NSString *firstName = self.inputTexts[FIRST_NAME];
+    NSString *lastName = self.inputTexts[LAST_NAME];
+    NSString *email = self.inputTexts[EMAIL];
+    NSString *password = self.inputTexts[PASSWORD];
+    NSString *confirmPassword = self.inputTexts[CONFIRM_PASSWORD];
+    NSString *gender = self.inputTexts[GENDER + 5];
+    NSString *city = self.inputTexts[CITY + 5];
+    NSString *region = self.inputTexts[REGION + 5];
+    
+    // Check if all required fields are set
+    if (firstName && ![firstName isEqualToString:@""] && lastName && ![lastName isEqualToString:@""] && email && ![email isEqualToString:@""] && password && ![password isEqualToString:@""] && confirmPassword && ![confirmPassword isEqualToString:@""]){
+        // Check if password and confirmPassword match
+        if ([password isEqualToString:confirmPassword]){
+            // Create new user
+            User *newUser = [[User alloc] init];
+            [newUser setFirstName:firstName];
+            [newUser setLastName:lastName];
+            [newUser setEmail:email];
+            [newUser setPassword:password];
+            
+            // Set gender, city and region if they are not blank
+            if (gender && ![gender isEqualToString:@""]){
+                [newUser setGender:gender];
+            }
+            if (city && ![city isEqualToString:@""]){
+                [newUser setCity:city];
+            }
+            if (region && ![region isEqualToString:@""]){
+                [newUser setRegion:region];
+            }
+            
+            // Sign up user
+            [newUser signUp:^(BOOL success, NSError *error){
+                if (!error){
+                    if (success){
+                        [self performSegueWithIdentifier:@"signupSuccessSegue" sender:self];
+                    } else {
+                        NSLog(@"Error signing up user.");
+                    }
+                } else {
+                    NSLog(@"Error signing up user: [%@]", error);
+                }
+            }];
+        } else {
+            [self alertStatus:@"Passwords Invalid" message:@"Passwords do not match. Please try again."];
+        }
+    } else {
+        [self alertStatus:@"Field Blank" message:@"Please fill in all required fields"];
+    }
 }
 
 - (IBAction)cancelBarButtonTapped:(id)sender

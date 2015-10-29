@@ -88,11 +88,69 @@
                         <outlet property="passwordTextField" destination="8yx-Oj-lub" id="1Yg-Zw-wId"/>
                         <outlet property="signupButton" destination="t1N-g6-MRD" id="dqn-Vg-Y2K"/>
                         <segue destination="izV-w7-Nwl" kind="show" identifier="signupSegue" id="vhv-Xb-pFc"/>
+                        <segue destination="286-KA-AI5" kind="show" identifier="loginSegue" id="FMu-mV-h6N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="380" y="189"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="klp-Fe-Kvu">
+            <objects>
+                <viewController id="4ng-Sz-OGM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Aim-FA-4ZO"/>
+                        <viewControllerLayoutGuide type="bottom" id="vzk-uP-45m"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fIq-O7-feo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="Circled_User_Male_32.png" id="aCt-8i-efc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7mI-8B-Gnk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2020" y="520"/>
+        </scene>
+        <!--Proposals-->
+        <scene sceneID="ifE-5W-fRP">
+            <objects>
+                <viewController id="NBh-SS-8tG" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8UX-5F-ALg"/>
+                        <viewControllerLayoutGuide type="bottom" id="skg-Lq-32M"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1uJ-hO-PsV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Proposals" image="Rules_32.png" id="Fpg-bh-GqC"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lvi-oi-Xeq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2020" y="-142"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="eK7-Hf-rCO">
+            <objects>
+                <tabBarController id="286-KA-AI5" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="oPw-jm-hqI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="NBh-SS-8tG" kind="relationship" relationship="viewControllers" id="SHQ-DW-qBn"/>
+                        <segue destination="4ng-Sz-OGM" kind="relationship" relationship="viewControllers" id="Vlj-SV-Tj4"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7q1-Qg-FJm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1200" y="189"/>
         </scene>
         <!--Sign Up-->
         <scene sceneID="qhS-rA-ytL">
@@ -127,6 +185,9 @@
                         </connections>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="286-KA-AI5" kind="show" identifier="signupSuccessSegue" id="war-J5-Yqi"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ysh-GP-rMI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <barButtonItem title="Cancel" id="mma-3p-G4G">
@@ -154,4 +215,11 @@
             <point key="canvasLocation" x="380" y="971"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Circled_User_Male_32.png" width="32" height="32"/>
+        <image name="Rules_32.png" width="32" height="32"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="war-J5-Yqi"/>
+    </inferredMetricsTieBreakers>
 </document>

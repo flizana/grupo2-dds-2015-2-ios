@@ -117,9 +117,9 @@ static User *currentUser = nil;
 - (void)signUp:(void (^)(BOOL success, NSError *error))result
 {
     // Check if all fields are set
-    if (self.password && self.firstName && self.lastName && self.email && self.gender && self.birthDate && self.age && self.region && self.city){
+    if (self.password && self.firstName && self.lastName && self.email && self.gender && self.region && self.city){
         // Check if a field is set but blank
-        if (![self.password isEqualToString:@""] && ![self.firstName isEqualToString:@""] && ![self.lastName isEqualToString:@""] && ![self.email isEqualToString:@""] && ![self.gender isEqualToString:@""] && ![self.birthDate isEqual:[NSDate date]] && self.age != 0 && ![self.region isEqualToString:@""] && ![self.city isEqualToString:@""]){
+        if (![self.password isEqualToString:@""] && ![self.firstName isEqualToString:@""] && ![self.lastName isEqualToString:@""] && ![self.email isEqualToString:@""] && ![self.gender isEqualToString:@""] && ![self.region isEqualToString:@""] && ![self.city isEqualToString:@""]){
             
             // Set information into NSDictionary
             NSDictionary *params = @{FirstNameParameter: self.firstName,
@@ -127,8 +127,6 @@ static User *currentUser = nil;
                                      PasswordParameter: self.password,
                                      EmailParameter: self.email,
                                      GenderParameter: self.gender,
-                                     BirthDateParameter: self.birthDate,
-                                     AgeParameter: [NSNumber numberWithInteger:self.age],
                                      RegionParameter: self.region,
                                      CityParameter: self.city};
             
