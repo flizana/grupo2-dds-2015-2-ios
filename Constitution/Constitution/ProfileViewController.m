@@ -7,8 +7,12 @@
 //
 
 #import "ProfileViewController.h"
+#import "User.h"
 
 @interface ProfileViewController ()
+
+@property (strong, nonatomic) IBOutlet UILabel *fullNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *emailLabel;
 
 @end
 
@@ -16,7 +20,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    User *currentUser = [User currentUser];
+    self.fullNameLabel.text = [NSString stringWithFormat:@"%@ %@", [currentUser getFirstName], [currentUser getLastName]];
+    self.emailLabel.text = [currentUser getEmail];
 }
 
 - (void)didReceiveMemoryWarning {

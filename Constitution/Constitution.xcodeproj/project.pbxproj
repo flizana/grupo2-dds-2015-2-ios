@@ -33,6 +33,7 @@
 		53BF355B1BE28CCA00062F21 /* Rules_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 53BF355A1BE28CCA00062F21 /* Rules_32.png */; };
 		53BF355D1BE28D0900062F21 /* Circled_User_Male_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 53BF355C1BE28D0900062F21 /* Circled_User_Male_32.png */; };
 		53BF35601BE291F000062F21 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BF355F1BE291F000062F21 /* ProfileViewController.m */; };
+		53BF35631BE295EC00062F21 /* ProposalsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BF35621BE295EC00062F21 /* ProposalsTableViewController.m */; };
 		53CD1F2B1BE13EFD00773C71 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CD1F2A1BE13EFD00773C71 /* LoginViewController.m */; };
 		53FB27121BE26A6700BE48C2 /* SignupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FB27111BE26A6700BE48C2 /* SignupTableViewController.m */; };
 		D6DCA60B4F2EA7CBCC086DE3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF1519C2878C2B416877FC9 /* libPods.a */; };
@@ -92,6 +93,8 @@
 		53BF355C1BE28D0900062F21 /* Circled_User_Male_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Circled_User_Male_32.png; sourceTree = "<group>"; };
 		53BF355E1BE291F000062F21 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		53BF355F1BE291F000062F21 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		53BF35611BE295EC00062F21 /* ProposalsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposalsTableViewController.h; sourceTree = "<group>"; };
+		53BF35621BE295EC00062F21 /* ProposalsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposalsTableViewController.m; sourceTree = "<group>"; };
 		53CD1F291BE13EFD00773C71 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		53CD1F2A1BE13EFD00773C71 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		53FB27101BE26A6700BE48C2 /* SignupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupTableViewController.h; sourceTree = "<group>"; };
@@ -257,6 +260,8 @@
 				53FB27111BE26A6700BE48C2 /* SignupTableViewController.m */,
 				53BF355E1BE291F000062F21 /* ProfileViewController.h */,
 				53BF355F1BE291F000062F21 /* ProfileViewController.m */,
+				53BF35611BE295EC00062F21 /* ProposalsTableViewController.h */,
+				53BF35621BE295EC00062F21 /* ProposalsTableViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -422,6 +427,7 @@
 				534457981BD00F45000C6F81 /* ErrorDomains.m in Sources */,
 				53FB27121BE26A6700BE48C2 /* SignupTableViewController.m in Sources */,
 				534457921BD002DC000C6F81 /* KeychainAccess.m in Sources */,
+				53BF35631BE295EC00062F21 /* ProposalsTableViewController.m in Sources */,
 				534F318E1BCDAE8C00C74544 /* Constitution.xcdatamodeld in Sources */,
 				534F318B1BCDAE8C00C74544 /* AppDelegate.m in Sources */,
 				534457951BD00894000C6F81 /* APIEndpoints.m in Sources */,

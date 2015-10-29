@@ -13,19 +13,16 @@
 #define NUMERIC @"0123456789"
 #define ALPHA_NUMERIC ALPHA NUMERIC
 
-typedef enum textFieldRequiredInput{
+typedef enum textFieldInput{
     FIRST_NAME,
     LAST_NAME,
     EMAIL,
     PASSWORD,
-    CONFIRM_PASSWORD
-}textFieldRequiredInput;
-
-typedef enum textFieldOptionalInput{
+    CONFIRM_PASSWORD,
     GENDER,
     CITY,
     REGION
-}textFieldOptionalInput;
+}textFieldInput;
 
 typedef enum tableViewSection{
     REQUIRED,
@@ -53,7 +50,7 @@ typedef enum tableViewSection{
     [self.tableView addGestureRecognizer:tap];
     
     // Set input texts
-    self.inputTexts = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", @"", @"", @"", @"", nil];
+    self.inputTexts = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", @"", @"", @"", nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -297,7 +294,7 @@ typedef enum tableViewSection{
             CGRect frame = CGRectMake(CGRectGetWidth(cell.frame) * 0.25, CGRectGetMinY(cell.frame), CGRectGetWidth(cell.frame) * 0.60, CGRectGetHeight(cell.frame));
             UITextField *inputTextField = [[UITextField alloc] initWithFrame:frame];
             inputTextField.delegate = self;
-            inputTextField.tag = indexPath.row;
+            inputTextField.tag = indexPath.row + 5;
             inputTextField.borderStyle = UITextBorderStyleNone;
             inputTextField.spellCheckingType = UITextSpellCheckingTypeNo;
             inputTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -305,21 +302,21 @@ typedef enum tableViewSection{
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             switch (indexPath.row) {
-                case GENDER:{
+                case 0:{
                     cell.textLabel.text = @"Gender:";
                     inputTextField.secureTextEntry = NO;
                     inputTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
                     inputTextField.keyboardType = UIKeyboardTypeDefault;
                     break;
                 }
-                case CITY:{
+                case 1:{
                     cell.textLabel.text = @"City:";
                     inputTextField.secureTextEntry = NO;
                     inputTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
                     inputTextField.keyboardType = UIKeyboardTypeDefault;
                     break;
                 }
-                case REGION:{
+                case 2:{
                     cell.textLabel.text = @"Region:";
                     inputTextField.secureTextEntry = NO;
                     inputTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -384,9 +381,9 @@ typedef enum tableViewSection{
     NSString *email = self.inputTexts[EMAIL];
     NSString *password = self.inputTexts[PASSWORD];
     NSString *confirmPassword = self.inputTexts[CONFIRM_PASSWORD];
-    NSString *gender = self.inputTexts[GENDER + 5];
-    NSString *city = self.inputTexts[CITY + 5];
-    NSString *region = self.inputTexts[REGION + 5];
+    NSString *gender = self.inputTexts[GENDER];
+    NSString *city = self.inputTexts[CITY];
+    NSString *region = self.inputTexts[REGION];
     
     // Check if all required fields are set
     if (firstName && ![firstName isEqualToString:@""] && lastName && ![lastName isEqualToString:@""] && email && ![email isEqualToString:@""] && password && ![password isEqualToString:@""] && confirmPassword && ![confirmPassword isEqualToString:@""]){
@@ -394,20 +391,20 @@ typedef enum tableViewSection{
         if ([password isEqualToString:confirmPassword]){
             // Create new user
             User *newUser = [[User alloc] init];
-            [newUser setFirstName:firstName];
-            [newUser setLastName:lastName];
-            [newUser setEmail:email];
-            [newUser setPassword:password];
+            [newUser syncFirstName:firstName];
+            [newUser syncLastName:lastName];
+            [newUser syncEmail:email];
+            [newUser syncPassword:password];
             
             // Set gender, city and region if they are not blank
             if (gender && ![gender isEqualToString:@""]){
-                [newUser setGender:gender];
+                [newUser syncGender:gender];
             }
             if (city && ![city isEqualToString:@""]){
-                [newUser setCity:city];
+                [newUser syncCity:city];
             }
             if (region && ![region isEqualToString:@""]){
-                [newUser setRegion:region];
+                [newUser syncRegion:region];
             }
             
             // Sign up user

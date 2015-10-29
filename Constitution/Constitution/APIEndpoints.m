@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "APIEndpoints.h"
 
-NSString *const BackendEndpoint = @"";
-NSString *const SignUpEndpoint = @"";
-NSString *const LogInEndpoint = @"";
+NSString *const BackendEndpoint = @"http://laconstitucion.cloudapp.net";
+NSString *const SignUpEndpoint = @"/users.json";
+NSString *const LogInEndpoint = @"/login.json";
 NSString *const SaveUserEndpoint = @"";
+NSString *const ProposalsEndpoint = @"";
 NSString *const ProposalApproveEndpoint = @"";
 NSString *const ProposalDisapproveEndpoint = @"";
 NSString *const CommentApproveEndpoint = @"";

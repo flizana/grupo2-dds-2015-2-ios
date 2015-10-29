@@ -20,6 +20,7 @@ FOUNDATION_EXPORT NSString *const BirthDateParameter;
 FOUNDATION_EXPORT NSString *const AgeParameter;
 FOUNDATION_EXPORT NSString *const RegionParameter;
 FOUNDATION_EXPORT NSString *const CityParameter;
+FOUNDATION_EXPORT NSString *const ProfileParameter;
 
 /* Proposal */
 FOUNDATION_EXPORT NSString *const ProposalIdParameter;

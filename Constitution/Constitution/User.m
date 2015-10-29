@@ -18,14 +18,12 @@
 
 @interface User()
 
-@property (nonatomic) NSInteger userId;
+@property (nonatomic) unsigned long userId;
 @property (nonatomic, assign) NSString *password;
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSString *email;
 @property (nonatomic, assign) NSString *gender;
-@property (nonatomic, assign) NSDate *birthDate;
-@property (nonatomic) NSInteger age;
 @property (nonatomic, assign) NSString *region;
 @property (nonatomic, assign) NSString *city;
 
@@ -42,7 +40,7 @@ static User *currentUser = nil;
     return self.userId;
 }
 
-- (void)setPassword:(NSString *)password
+- (void)syncPassword:(NSString *)password
 {
     self.password = [Crypto SHA256encrypt:password];
 }
@@ -52,9 +50,9 @@ static User *currentUser = nil;
     return self.firstName;
 }
 
-- (void)setFirstName:(NSString *)firstName
+- (void)syncFirstName:(NSString *)firstName
 {
-    self.firstName = firstName;
+    self.firstName = [NSString stringWithString:firstName];
 }
 
 - (NSString *)getLastName
@@ -62,7 +60,7 @@ static User *currentUser = nil;
     return self.lastName;
 }
 
-- (void)setLastName:(NSString *)lastName
+- (void)syncLastName:(NSString *)lastName
 {
     self.lastName = lastName;
 }
@@ -72,32 +70,22 @@ static User *currentUser = nil;
     return self.email;
 }
 
-- (void)setEmail:(NSString *)email
+- (void)syncEmail:(NSString *)email
 {
     self.email = email;
 }
 
-- (void)setGender:(NSString *)gender
+- (void)syncGender:(NSString *)gender
 {
     self.gender = gender;
 }
 
-- (void)setBirthDate:(NSDate *)birthDate
-{
-    self.birthDate = birthDate;
-}
-
-- (void)setAge:(NSInteger)age
-{
-    self.age = age;
-}
-
-- (void)setRegion:(NSString *)region
+- (void)syncRegion:(NSString *)region
 {
     self.region = region;
 }
 
-- (void)setCity:(NSString *)city
+- (void)syncCity:(NSString *)city
 {
     self.city = city;
 }
@@ -108,7 +96,7 @@ static User *currentUser = nil;
     return (NSString *)[keychain myObjectForKey:self.email];
 }
 
-- (void)setUserToken:(NSString *)userToken
+- (void)syncUserToken:(NSString *)userToken
 {
     KeychainAccess *keychain = [[KeychainAccess alloc] init];
     [keychain mySetObject:userToken forKey:self.email];
@@ -139,16 +127,20 @@ static User *currentUser = nil;
             if ([Reachability reachabilityForInternetConnection]){
                 [manager POST:signUpEndpointURL parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
                     NSDictionary *responseDict = (NSDictionary *)responseObject;
-                    BOOL success = (BOOL)[(NSNumber *)[responseDict objectForKey:SuccessParamater] boolValue];
-                    if (success){
-                        NSLog(@"Sign Up Successful!");
-                        NSDictionary *user = (NSDictionary *)[responseDict objectForKey:UserParameter];
-                        [User setCurrentUser:user];
-                        result(YES, nil);
-                    } else {
-                        NSLog(@"Error signing up user");
-                        result(NO, [NSError errorWithDomain:InternalServerErrorDomain code:InternalServerErrorCode userInfo:nil]);
-                    }
+                    unsigned long userId = (long)[(NSNumber *)[responseDict objectForKey:UserIdParameter] longValue];
+                    NSString *firstName = (NSString *)[responseDict objectForKey:FirstNameParameter];
+                    NSString *lastName = (NSString *)[responseDict objectForKey:LastNameParameter];
+                    NSString *email = (NSString *)[responseDict objectForKey:EmailParameter];
+                    NSString *token = (NSString *)[responseDict objectForKey:UserTokenParameter];
+                    NSDictionary *user = [NSDictionary dictionaryWithObjectsAndKeys:
+                                          firstName, FirstNameParameter,
+                                          lastName, LastNameParameter,
+                                          email, EmailParameter,
+                                          [NSNumber numberWithUnsignedLong:userId], UserIdParameter,
+                                          token, UserTokenParameter,
+                                          nil];
+                    [User setCurrentUser:user];
+                    result(YES, nil);
                 }failure:^(NSURLSessionDataTask *task, NSError *error){
                     NSLog(@"Error signing up user: [%@]", error);
                     result(NO, error);
@@ -221,10 +213,11 @@ static User *currentUser = nil;
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^(void){
             currentUser = [[User alloc] init];
-            currentUser.userId = [(NSNumber *)[user objectForKey:UserIdParameter] integerValue];
+            currentUser.userId = [(NSNumber *)[user objectForKey:UserIdParameter] longValue];
             currentUser.firstName = [user objectForKey:FirstNameParameter];
             currentUser.lastName = [user objectForKey:LastNameParameter];
             currentUser.email = [user objectForKey:EmailParameter];
+            [currentUser syncUserToken:[user objectForKey:UserTokenParameter]];
         });
     }
 }
@@ -252,16 +245,30 @@ static User *currentUser = nil;
             if ([Reachability reachabilityForInternetConnection]){
                 [manager POST:logInEndpointURL parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
                     NSDictionary *responseDict = (NSDictionary *)responseObject;
-                    BOOL success = (BOOL)[(NSNumber *)[responseDict objectForKey:SuccessParamater] boolValue];
-                    if (success){
-                        NSLog(@"Log In Successful!");
-                        NSDictionary *user = (NSDictionary *)[responseDict objectForKey:UserParameter];
-                        [User setCurrentUser:user];
+                    unsigned long userId = (long)[(NSNumber *)[responseDict objectForKey:@"user_id"] longValue];
+                    NSString *token = (NSString *)[responseDict objectForKey:@"token"];
+                    NSString *profileEndpointURL = (NSString *)[responseDict objectForKey:ProfileParameter];
+                    NSMutableDictionary *user = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                                 [NSNumber numberWithUnsignedLong:userId], UserIdParameter,
+                                                 token, UserTokenParameter,
+                                                 nil];
+                    [manager GET:profileEndpointURL parameters:[NSDictionary dictionaryWithDictionary:user] success:^(NSURLSessionDataTask *task, id responseObject){
+                        NSDictionary *responseDict = (NSDictionary *)responseObject;
+                        NSString *email = (NSString *)[responseDict objectForKey:EmailParameter];
+                        NSString *firstName = (NSString *)[responseDict objectForKey:FirstNameParameter];
+                        NSString *lastName = (NSString *)[responseDict objectForKey:LastNameParameter];
+                        
+                        [user setObject:email forKey:EmailParameter];
+                        [user setObject:firstName forKey:FirstNameParameter];
+                        [user setObject:lastName forKey:LastNameParameter];
+                        
+                        [User setCurrentUser:[NSDictionary dictionaryWithDictionary:user]];
                         result(YES, nil);
-                    } else {
-                        NSLog(@"Error logging in user");
-                        result(NO, [NSError errorWithDomain:InternalServerErrorDomain code:InternalServerErrorCode userInfo:nil]);
-                    }
+                        
+                    }failure:^(NSURLSessionDataTask *task, NSError *error){
+                        NSLog(@"Error getting profile data: [%@]", error);
+                        result(NO, error);
+                    }];
                 }failure:^(NSURLSessionDataTask *task, NSError *error){
                     NSLog(@"Error logging in user: [%@]", error);
                     result(NO, error);

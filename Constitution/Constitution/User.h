@@ -13,20 +13,18 @@
 #pragma mark - Instance Methods
 
 - (NSInteger)getUserId;
-- (void)setPassword:(NSString *)password;
+- (void)syncPassword:(NSString *)password;
 - (NSString *)getFirstName;
-- (void)setFirstName:(NSString *)firstName;
+- (void)syncFirstName:(NSString *)firstName;
 - (NSString *)getLastName;
-- (void)setLastName:(NSString *)lastName;
+- (void)syncLastName:(NSString *)lastName;
 - (NSString *)getEmail;
-- (void)setEmail:(NSString *)email;
-- (void)setGender:(NSString *)gender;
-- (void)setBirthDate:(NSDate *)birthDate;
-- (void)setAge:(NSInteger)age;
-- (void)setRegion:(NSString *)region;
-- (void)setCity:(NSString *)city;
+- (void)syncEmail:(NSString *)email;
+- (void)syncGender:(NSString *)gender;
+- (void)syncRegion:(NSString *)region;
+- (void)syncCity:(NSString *)city;
 - (NSString *)getUserToken;
-- (void)setUserToken:(NSString *)userToken;
+- (void)syncUserToken:(NSString *)userToken;
 - (void)signUp:(void (^)(BOOL, NSError *))result;
 - (void)save:(void (^)(BOOL, NSError *))result;
 

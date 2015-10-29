@@ -10,16 +10,15 @@
 
 /* Users */
 NSString *const UserParameter = @"user";
-NSString *const UserIdParameter = @"user_id";
+NSString *const UserIdParameter = @"id";
 NSString *const FirstNameParameter = @"first_name";
 NSString *const LastNameParameter = @"last_name";
 NSString *const PasswordParameter = @"password";
 NSString *const EmailParameter = @"email";
 NSString *const GenderParameter = @"gender";
-NSString *const BirthDateParameter = @"birth_date";
-NSString *const AgeParameter = @"age";
 NSString *const RegionParameter = @"region";
 NSString *const CityParameter = @"city";
+NSString *const ProfileParameter = @"profile";
 
 /* Proposal */
 NSString *const ProposalIdParameter = @"proposal_id";
