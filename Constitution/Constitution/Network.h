@@ -12,6 +12,6 @@
 @interface Network : NSObject
 
 + (AFHTTPSessionManager *)sessionManager;
-+ (void)downloadProposalsWithBlock:(void (^)(BOOL, NSError *))result;
++ (void)downloadProposalsWithBlock:(void (^)(BOOL, NSError *, NSArray *))result;
 
 @end

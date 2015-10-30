@@ -26,14 +26,14 @@
     return manager;
 }
 
-+ (void)downloadProposalsWithBlock:(void (^)(BOOL, NSError *))result
++ (void)downloadProposalsWithBlock:(void (^)(BOOL, NSError *, NSArray *))result
 {
     User *currentUser = [User currentUser];
     if (!currentUser){
-        result(NO, [NSError errorWithDomain:CurrentUserNilErrorDomain code:CurrentUserNilErrorCode userInfo:nil]);
+        result(NO, [NSError errorWithDomain:CurrentUserNilErrorDomain code:CurrentUserNilErrorCode userInfo:nil], nil);
     } else {
         // Set information into NSDictionary
-        NSDictionary *params = @{UserIdParameter: [NSNumber numberWithInteger:[currentUser getUserId]],
+        NSDictionary *params = @{UserIdParameter: [NSNumber numberWithLong:[currentUser getUserId]],
                                  UserTokenParameter: [currentUser getUserToken]};
         
         // Set endpoint URL
@@ -44,21 +44,14 @@
         // Check if internet connection is available
         if ([Reachability reachabilityForInternetConnection]){
             [manager GET:proposalsEndpointURL parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
-                NSDictionary *responseDict = (NSDictionary *)responseObject;
-                BOOL success = (BOOL)[(NSNumber *)[responseDict objectForKey:SuccessParamater] boolValue];
-                if (success){
-                    // Download success
-                    NSLog(@"Download success");
-                } else {
-                    NSLog(@"Error downloading proposals");
-                    result(NO, [NSError errorWithDomain:InternalServerErrorDomain code:InternalServerErrorCode userInfo:nil]);
-                }
+                NSArray *responseArray = (NSArray *)responseObject;
+                result(YES, nil, responseArray);
             }failure:^(NSURLSessionDataTask *task, NSError *error){
                 NSLog(@"Error downloading proposals: [%@]", error);
-                result(NO, error);
+                result(NO, error, nil);
             }];
         } else {
-            result(NO, [NSError errorWithDomain:NoInternetConnectionErrorDomain code:NoInternetConnectionErrorCode userInfo:nil]);
+            result(NO, [NSError errorWithDomain:NoInternetConnectionErrorDomain code:NoInternetConnectionErrorCode userInfo:nil], nil);
         }
     }
 }

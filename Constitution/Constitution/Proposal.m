@@ -18,42 +18,11 @@
 
 @interface Proposal()
 
-@property (nonatomic) NSInteger proposalId;
-@property (strong, nonatomic) NSString *proposal;
-@property (strong, nonatomic) NSArray *comments;
-@property (nonatomic) NSInteger numApproval;
-@property (nonatomic) NSInteger numDisapproval;
-
 @end
 
 @implementation Proposal
 
 #pragma mark - Instance Methods
-
-- (NSInteger)getProposalId
-{
-    return self.proposalId;
-}
-
-- (NSString *)getProposal
-{
-    return self.proposal;
-}
-
-- (NSArray *)getComments
-{
-    return self.comments;
-}
-
-- (NSInteger)getNumApproval
-{
-    return self.numApproval;
-}
-
-- (NSInteger)getNumDisapproval
-{
-    return self.numDisapproval;
-}
 
 - (void)incrementApproval
 {

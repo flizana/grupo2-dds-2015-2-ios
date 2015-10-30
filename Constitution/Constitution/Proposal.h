@@ -10,13 +10,16 @@
 
 @interface Proposal : NSObject
 
+@property (nonatomic) unsigned long proposalId;
+@property (strong, nonatomic) NSString *proposalText;
+@property (nonatomic) unsigned long userId;
+@property (strong, nonatomic) NSString *proposalURL;
+@property (strong, nonatomic) NSArray *comments;
+@property (nonatomic) NSInteger numApproval;
+@property (nonatomic) NSInteger numDisapproval;
+
 #pragma mark - Instance Methods
 
-- (NSInteger)getProposalId;
-- (NSString *)getProposal;
-- (NSArray *)getComments;
-- (NSInteger)getNumApproval;
-- (NSInteger)getNumDisapproval;
 - (void)approveWithBlock:(void (^)(BOOL, NSError *))result;
 - (void)disapproveWithBlock:(void (^)(BOOL, NSError *))result;
 - (void)insertComment:(NSString *)comment block:(void (^)(BOOL, NSError *))result;

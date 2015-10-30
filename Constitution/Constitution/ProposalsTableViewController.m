@@ -8,8 +8,12 @@
 
 #import "ProposalsTableViewController.h"
 #import "Network.h"
+#import "Proposal.h"
+#import "APIParameters.h"
 
 @interface ProposalsTableViewController ()
+
+@property (strong, nonatomic) NSArray *proposals;
 
 @end
 
@@ -18,13 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.proposals = nil;
+    
     [self downloadProposals];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,10 +36,10 @@
 
 - (void)downloadProposals
 {
-    [Network downloadProposalsWithBlock:^(BOOL success, NSError *error){
+    [Network downloadProposalsWithBlock:^(BOOL success, NSError *error, NSArray *proposals){
         if (!error){
             if (success){
-                NSLog(@"Proposals downloaded!");
+                [self parseProposals:proposals];
             } else {
                 NSLog(@"Error downloading proposals.");
             }
@@ -49,29 +49,66 @@
     }];
 }
 
+#pragma mark - Parsing
+
+- (void)parseProposals:(NSArray *)proposals
+{
+    NSMutableArray *proposalsArray = [NSMutableArray array];
+    for (NSDictionary *prop in proposals){
+        Proposal *proposal = [[Proposal alloc] init];
+        proposal.proposalId = (unsigned long)[(NSNumber *)[prop objectForKey:@"id"] unsignedLongValue];
+        proposal.proposalText = (NSString *)[prop objectForKey:@"texto"];
+        proposal.userId = (unsigned long)[(NSNumber *)[prop objectForKey:@"user_id"] unsignedLongValue];
+        proposal.proposalURL = (NSString *)[prop objectForKey:@"url"];
+        [proposalsArray addObject:proposal];
+    }
+    self.proposals = [NSArray arrayWithArray:proposalsArray];
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    if (self.proposals){
+        return self.proposals.count;
+    } else {
+        return 0;
+    }
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    static NSString *identifier = @"proposalCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    if (!cell){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
     
-    // Configure the cell...
+    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    Proposal *proposal = self.proposals[indexPath.row];
+    cell.textLabel.text = proposal.proposalText;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }
-*/
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Proposal *proposal = self.proposals[indexPath.row];
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0]};
+    CGRect rect = [proposal.proposalText boundingRectWithSize:CGSizeMake(self.tableView.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
+    if ((rect.size.height + 30) < 44.0){
+        return 44.0;
+    } else {
+        return rect.size.height + 70;
+    }
+}
+
 
 /*
 // Override to support conditional editing of the table view.
