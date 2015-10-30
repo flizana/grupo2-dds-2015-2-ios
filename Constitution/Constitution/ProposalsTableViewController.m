@@ -15,6 +15,8 @@
 
 @property (strong, nonatomic) NSArray *proposals;
 
+@property (nonatomic) unsigned long selectedProposalId;
+
 @end
 
 @implementation ProposalsTableViewController
@@ -109,6 +111,16 @@
     }
 }
 
+#pragma mark - UITableView Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    Proposal *proposal = self.proposals[indexPath.row];
+    self.selectedProposalId = proposal.proposalId;
+    [self performSegueWithIdentifier:@"proposalSegue" sender:self];
+}
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -144,14 +156,15 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"proposalSegue"]){
+        
+    }
 }
-*/
+
 
 @end
