@@ -150,6 +150,9 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <state key="selected" backgroundImage="Thumbs_Down_Filled_50.png"/>
+                                            <connections>
+                                                <action selector="disapproveProposalButtonTapped:" destination="Hvc-sp-52o" eventType="touchUpInside" id="SIC-yX-pAp"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVm-Qq-ARg">
                                             <rect key="frame" x="8" y="8" width="584" height="75"/>
@@ -167,6 +170,9 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <state key="selected" backgroundImage="Thumb_Up_Filled_50.png"/>
+                                            <connections>
+                                                <action selector="approveProposalButtonTapped:" destination="Hvc-sp-52o" eventType="touchUpInside" id="rN5-tN-ba7"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -216,6 +222,9 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <state key="selected" backgroundImage="Thumbs_Down_Filled_50.png"/>
+                                            <connections>
+                                                <action selector="disapproveCommentButtonTapped:" destination="Hvc-sp-52o" eventType="touchUpInside" id="Lox-3H-gea"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98h-Lp-G2h">
                                             <rect key="frame" x="463" y="111" width="50" height="50"/>
@@ -227,6 +236,9 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <state key="selected" backgroundImage="Thumb_Up_Filled_50.png"/>
+                                            <connections>
+                                                <action selector="approveCommentButtonTapped:" destination="Hvc-sp-52o" eventType="touchUpInside" id="H88-zY-MGj"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -274,6 +286,9 @@
                                             <state key="normal" title="Send">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="insertCommentButtonTapped:" destination="Hvc-sp-52o" eventType="touchUpInside" id="C0Z-dk-ms4"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>

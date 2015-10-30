@@ -194,6 +194,33 @@
 }
 */
 
+#pragma mark - UI Actions
+
+- (IBAction)approveProposalButtonTapped:(id)sender
+{
+    NSLog(@"approve proposal...");
+}
+
+- (IBAction)disapproveProposalButtonTapped:(id)sender
+{
+    NSLog(@"disapprove proposal...");
+}
+
+- (IBAction)approveCommentButtonTapped:(id)sender
+{
+    NSLog(@"approve comment...");
+}
+
+- (IBAction)disapproveCommentButtonTapped:(id)sender
+{
+    NSLog(@"disapprove comment...");
+}
+
+- (IBAction)insertCommentButtonTapped:(id)sender
+{
+    NSLog(@"insert new comment...");
+}
+
 /*
 #pragma mark - Navigation
 

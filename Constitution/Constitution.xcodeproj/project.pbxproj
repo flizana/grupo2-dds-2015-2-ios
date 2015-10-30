@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		532952921BE3E20400885A90 /* ProposalDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 532952911BE3E20400885A90 /* ProposalDetailTableViewController.m */; };
 		532952961BE3E24200885A90 /* ProposalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 532952951BE3E24200885A90 /* ProposalTableViewCell.m */; };
 		532952991BE3E24D00885A90 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 532952981BE3E24D00885A90 /* CommentTableViewCell.m */; };
 		5329529C1BE3E25A00885A90 /* InsertCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5329529B1BE3E25A00885A90 /* InsertCommentTableViewCell.m */; };
@@ -39,6 +38,7 @@
 		53BF35601BE291F000062F21 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BF355F1BE291F000062F21 /* ProfileViewController.m */; };
 		53BF35631BE295EC00062F21 /* ProposalsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BF35621BE295EC00062F21 /* ProposalsTableViewController.m */; };
 		53CD1F2B1BE13EFD00773C71 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CD1F2A1BE13EFD00773C71 /* LoginViewController.m */; };
+		53E075BE1BE3FD370072A3FE /* ProposalDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E075BD1BE3FD370072A3FE /* ProposalDetailTableViewController.m */; };
 		53FB27121BE26A6700BE48C2 /* SignupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FB27111BE26A6700BE48C2 /* SignupTableViewController.m */; };
 		D6DCA60B4F2EA7CBCC086DE3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF1519C2878C2B416877FC9 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -55,8 +55,6 @@
 
 /* Begin PBXFileReference section */
 		316484977959C7D3CA2A5B46 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		532952901BE3E20400885A90 /* ProposalDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposalDetailTableViewController.h; sourceTree = "<group>"; };
-		532952911BE3E20400885A90 /* ProposalDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposalDetailTableViewController.m; sourceTree = "<group>"; };
 		532952941BE3E24200885A90 /* ProposalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposalTableViewCell.h; sourceTree = "<group>"; };
 		532952951BE3E24200885A90 /* ProposalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposalTableViewCell.m; sourceTree = "<group>"; };
 		532952971BE3E24D00885A90 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
@@ -109,6 +107,8 @@
 		53BF35621BE295EC00062F21 /* ProposalsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposalsTableViewController.m; sourceTree = "<group>"; };
 		53CD1F291BE13EFD00773C71 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		53CD1F2A1BE13EFD00773C71 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		53E075BC1BE3FD370072A3FE /* ProposalDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposalDetailTableViewController.h; sourceTree = "<group>"; };
+		53E075BD1BE3FD370072A3FE /* ProposalDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposalDetailTableViewController.m; sourceTree = "<group>"; };
 		53FB27101BE26A6700BE48C2 /* SignupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupTableViewController.h; sourceTree = "<group>"; };
 		53FB27111BE26A6700BE48C2 /* SignupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupTableViewController.m; sourceTree = "<group>"; };
 		7FF1519C2878C2B416877FC9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -288,8 +288,8 @@
 				53BF355F1BE291F000062F21 /* ProfileViewController.m */,
 				53BF35611BE295EC00062F21 /* ProposalsTableViewController.h */,
 				53BF35621BE295EC00062F21 /* ProposalsTableViewController.m */,
-				532952901BE3E20400885A90 /* ProposalDetailTableViewController.h */,
-				532952911BE3E20400885A90 /* ProposalDetailTableViewController.m */,
+				53E075BC1BE3FD370072A3FE /* ProposalDetailTableViewController.h */,
+				53E075BD1BE3FD370072A3FE /* ProposalDetailTableViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -451,12 +451,12 @@
 				53BF35601BE291F000062F21 /* ProfileViewController.m in Sources */,
 				532952991BE3E24D00885A90 /* CommentTableViewCell.m in Sources */,
 				534F31B71BCDB06900C74544 /* Comment.m in Sources */,
-				532952921BE3E20400885A90 /* ProposalDetailTableViewController.m in Sources */,
 				534F31B11BCDB04A00C74544 /* User.m in Sources */,
 				532952961BE3E24200885A90 /* ProposalTableViewCell.m in Sources */,
 				53CD1F2B1BE13EFD00773C71 /* LoginViewController.m in Sources */,
 				534457981BD00F45000C6F81 /* ErrorDomains.m in Sources */,
 				53FB27121BE26A6700BE48C2 /* SignupTableViewController.m in Sources */,
+				53E075BE1BE3FD370072A3FE /* ProposalDetailTableViewController.m in Sources */,
 				534457921BD002DC000C6F81 /* KeychainAccess.m in Sources */,
 				53BF35631BE295EC00062F21 /* ProposalsTableViewController.m in Sources */,
 				534F318E1BCDAE8C00C74544 /* Constitution.xcdatamodeld in Sources */,
