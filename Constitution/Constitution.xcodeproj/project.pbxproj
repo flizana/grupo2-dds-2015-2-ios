@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		532952921BE3E20400885A90 /* ProposalDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 532952911BE3E20400885A90 /* ProposalDetailTableViewController.m */; };
+		532952961BE3E24200885A90 /* ProposalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 532952951BE3E24200885A90 /* ProposalTableViewCell.m */; };
+		532952991BE3E24D00885A90 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 532952981BE3E24D00885A90 /* CommentTableViewCell.m */; };
+		5329529C1BE3E25A00885A90 /* InsertCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5329529B1BE3E25A00885A90 /* InsertCommentTableViewCell.m */; };
 		5344578F1BD00284000C6F81 /* Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 5344578E1BD00284000C6F81 /* Crypto.m */; };
 		534457921BD002DC000C6F81 /* KeychainAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 534457911BD002DC000C6F81 /* KeychainAccess.m */; };
 		534457951BD00894000C6F81 /* APIEndpoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 534457941BD00894000C6F81 /* APIEndpoints.m */; };
@@ -51,6 +55,14 @@
 
 /* Begin PBXFileReference section */
 		316484977959C7D3CA2A5B46 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		532952901BE3E20400885A90 /* ProposalDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposalDetailTableViewController.h; sourceTree = "<group>"; };
+		532952911BE3E20400885A90 /* ProposalDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposalDetailTableViewController.m; sourceTree = "<group>"; };
+		532952941BE3E24200885A90 /* ProposalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposalTableViewCell.h; sourceTree = "<group>"; };
+		532952951BE3E24200885A90 /* ProposalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposalTableViewCell.m; sourceTree = "<group>"; };
+		532952971BE3E24D00885A90 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
+		532952981BE3E24D00885A90 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
+		5329529A1BE3E25A00885A90 /* InsertCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertCommentTableViewCell.h; sourceTree = "<group>"; };
+		5329529B1BE3E25A00885A90 /* InsertCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertCommentTableViewCell.m; sourceTree = "<group>"; };
 		5344578D1BD00284000C6F81 /* Crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crypto.h; sourceTree = "<group>"; };
 		5344578E1BD00284000C6F81 /* Crypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Crypto.m; sourceTree = "<group>"; };
 		534457901BD002DC000C6F81 /* KeychainAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainAccess.h; sourceTree = "<group>"; };
@@ -128,6 +140,19 @@
 				7FF1519C2878C2B416877FC9 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		532952931BE3E22A00885A90 /* Custom Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				532952941BE3E24200885A90 /* ProposalTableViewCell.h */,
+				532952951BE3E24200885A90 /* ProposalTableViewCell.m */,
+				532952971BE3E24D00885A90 /* CommentTableViewCell.h */,
+				532952981BE3E24D00885A90 /* CommentTableViewCell.m */,
+				5329529A1BE3E25A00885A90 /* InsertCommentTableViewCell.h */,
+				5329529B1BE3E25A00885A90 /* InsertCommentTableViewCell.m */,
+			);
+			name = "Custom Table View Cells";
 			sourceTree = "<group>";
 		};
 		5344578C1BD00261000C6F81 /* Utils */ = {
@@ -254,6 +279,7 @@
 		53CD1F281BE13E3C00773C71 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				532952931BE3E22A00885A90 /* Custom Table View Cells */,
 				53CD1F291BE13EFD00773C71 /* LoginViewController.h */,
 				53CD1F2A1BE13EFD00773C71 /* LoginViewController.m */,
 				53FB27101BE26A6700BE48C2 /* SignupTableViewController.h */,
@@ -262,6 +288,8 @@
 				53BF355F1BE291F000062F21 /* ProfileViewController.m */,
 				53BF35611BE295EC00062F21 /* ProposalsTableViewController.h */,
 				53BF35621BE295EC00062F21 /* ProposalsTableViewController.m */,
+				532952901BE3E20400885A90 /* ProposalDetailTableViewController.h */,
+				532952911BE3E20400885A90 /* ProposalDetailTableViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -421,8 +449,11 @@
 				5344579E1BD026EB000C6F81 /* Network.m in Sources */,
 				5344579B1BD01100000C6F81 /* APIParameters.m in Sources */,
 				53BF35601BE291F000062F21 /* ProfileViewController.m in Sources */,
+				532952991BE3E24D00885A90 /* CommentTableViewCell.m in Sources */,
 				534F31B71BCDB06900C74544 /* Comment.m in Sources */,
+				532952921BE3E20400885A90 /* ProposalDetailTableViewController.m in Sources */,
 				534F31B11BCDB04A00C74544 /* User.m in Sources */,
+				532952961BE3E24200885A90 /* ProposalTableViewCell.m in Sources */,
 				53CD1F2B1BE13EFD00773C71 /* LoginViewController.m in Sources */,
 				534457981BD00F45000C6F81 /* ErrorDomains.m in Sources */,
 				53FB27121BE26A6700BE48C2 /* SignupTableViewController.m in Sources */,
@@ -435,6 +466,7 @@
 				534F31911BCDAE8C00C74544 /* ViewController.m in Sources */,
 				534F31881BCDAE8C00C74544 /* main.m in Sources */,
 				534F31B41BCDB05E00C74544 /* Proposal.m in Sources */,
+				5329529C1BE3E25A00885A90 /* InsertCommentTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

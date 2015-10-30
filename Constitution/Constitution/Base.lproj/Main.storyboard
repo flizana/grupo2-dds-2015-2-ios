@@ -126,10 +126,10 @@
             </objects>
             <point key="canvasLocation" x="2722" y="-174"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Proposal Detail Table View Controller-->
         <scene sceneID="Id8-P3-3Yd">
             <objects>
-                <tableViewController id="Hvc-sp-52o" sceneMemberID="viewController">
+                <tableViewController id="Hvc-sp-52o" customClass="ProposalDetailTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="PIT-l8-Pvs">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
