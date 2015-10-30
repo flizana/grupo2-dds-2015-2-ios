@@ -218,7 +218,51 @@
 
 - (IBAction)insertCommentButtonTapped:(id)sender
 {
-    NSLog(@"insert new comment...");
+    NSIndexPath *indexPath = [self indexPathForSender:sender];
+    InsertCommentTableViewCell *cell = (InsertCommentTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    NSString *commentText = cell.insertCommentTextView.text;
+    [self.proposal insertComment:commentText block:^(BOOL success, NSError *error){
+        if (!error){
+            [self downloadComments];
+        } else {
+            NSLog(@"Error inserting comment: [%@]", error);
+            [self alertStatus:@"Insert Comment Failed" message:@"Could not insert comment. Please try again."];
+        }
+    }];
+}
+
+- (NSIndexPath *)indexPathForSender:(id)sender
+{
+    if (!sender){
+        return nil;
+    }
+    
+    if ([sender isKindOfClass:[ProposalTableViewCell class]]){
+        ProposalTableViewCell *cell = sender;
+        return [self.tableView indexPathForCell:cell];
+    } else if ([sender isKindOfClass:[CommentTableViewCell class]]){
+        CommentTableViewCell *cell = sender;
+        return [self.tableView indexPathForCell:cell];
+    } else if ([sender isKindOfClass:[InsertCommentTableViewCell class]]){
+        InsertCommentTableViewCell *cell = sender;
+        return [self.tableView indexPathForCell:cell];
+    }
+    
+    return [self indexPathForSender:((UIView *)[sender superview])];
+}
+
+#pragma mark - UIAlertController
+
+- (void)alertStatus:(NSString *)title message:(NSString *)message
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                               style:UIAlertActionStyleDefault
+                               handler:nil];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 /*

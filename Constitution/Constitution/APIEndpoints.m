@@ -19,4 +19,4 @@ NSString *const ProposalDisapproveEndpoint = @"";
 NSString *const CommentsEndpoint = @"/proposals/";
 NSString *const CommentApproveEndpoint = @"";
 NSString *const CommentDisapproveEndpoint = @"";
-NSString *const InsertCommentEndpoint = @"";
+NSString *const InsertCommentEndpoint = @"/comments.json";

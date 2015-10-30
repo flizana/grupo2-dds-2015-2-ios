@@ -134,11 +134,10 @@
         NSString *token = [currentUser getUserToken];
         
         // Set information into NSDictionary
-        NSDictionary *params = @{UserIdParameter: [NSNumber numberWithInteger:[currentUser getUserId]],
+        NSDictionary *params = @{@"User_id": [NSNumber numberWithInteger:[currentUser getUserId]],
                                  UserTokenParameter: token,
-                                 CommentCommentParameter: [newComment getComment],
-                                 CommentNumApprovalParameter: [NSNumber numberWithInteger:[newComment getNumApproval]],
-                                 CommentNumDisapprovalParameter: [NSNumber numberWithInteger:[newComment getNumDisapproval]]};
+                                 @"texto": [newComment getComment],
+                                 @"Proposal_id": [NSNumber numberWithUnsignedLong:self.proposalId]};
         
         // Set endpoint URL
         NSString *insertCommentEndpointURL = [NSString stringWithFormat:@"%@%@", BackendEndpoint, InsertCommentEndpoint];
@@ -148,15 +147,7 @@
         // Check if internet connection is available
         if ([Reachability reachabilityForInternetConnection]){
             [manager POST:insertCommentEndpointURL parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
-                NSDictionary *responseDict = (NSDictionary *)responseObject;
-                BOOL success = (BOOL)[(NSNumber *)[responseDict objectForKey:SuccessParamater] boolValue];
-                if (success){
-                    NSLog(@"Comment Inserted Successfully!");
-                    result(YES, nil);
-                } else {
-                    NSLog(@"Error inserting comment");
-                    result(NO, [NSError errorWithDomain:InternalServerErrorDomain code:InternalServerErrorCode userInfo:nil]);
-                }
+                result(YES, nil);
             }failure:^(NSURLSessionDataTask *task, NSError *error){
                 NSLog(@"Error inserting comment: [%@]", error);
                 result(NO, error);
