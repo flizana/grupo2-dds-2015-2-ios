@@ -10,6 +10,14 @@
 
 @interface Comment : NSObject
 
+@property (nonatomic) unsigned long commentId;
+@property (strong, nonatomic) NSString *comment;
+@property (nonatomic) unsigned long userId;
+@property (strong, nonatomic) NSString *userFirstName;
+@property (strong, nonatomic) NSString *userLastName;
+@property (nonatomic) NSInteger numApproval;
+@property (nonatomic) NSInteger numDisapproval;
+
 #pragma mark - Instance Methods
 
 - (id)initWithComment:(NSString *)comment;

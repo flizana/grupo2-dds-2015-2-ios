@@ -10,4 +10,7 @@
 
 @interface InsertCommentTableViewCell : UITableViewCell
 
+@property (strong, nonatomic) IBOutlet UITextView *insertCommentTextView;
+@property (strong, nonatomic) IBOutlet UIButton *sendButton;
+
 @end

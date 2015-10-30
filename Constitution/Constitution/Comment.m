@@ -17,11 +17,6 @@
 
 @interface Comment()
 
-@property (nonatomic) NSInteger commentId;
-@property (strong, nonatomic) NSString *comment;
-@property (nonatomic) NSInteger numApproval;
-@property (nonatomic) NSInteger numDisapproval;
-
 @end
 
 @implementation Comment

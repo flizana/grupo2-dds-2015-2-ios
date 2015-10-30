@@ -56,4 +56,36 @@
     }
 }
 
++ (void)downloadCommentsForProposalId:(unsigned long)proposalId withBLock:(void (^)(BOOL, NSError *, NSArray *))result
+{
+    User *currentUser = [User currentUser];
+    if (!currentUser){
+        result(NO, [NSError errorWithDomain:CurrentUserNilErrorDomain code:CurrentUserNilErrorCode userInfo:nil], nil);
+    } else {
+        // Set information into NSDictionary
+        NSDictionary *params = @{UserIdParameter: [NSNumber numberWithLong:[currentUser getUserId]],
+                                 UserTokenParameter: [currentUser getUserToken]};
+        
+        // Set endpoint URL
+        NSString *idString = [NSString stringWithFormat:@"%li", proposalId];
+        NSString *commentsEndpointURL = [NSString stringWithFormat:@"%@%@%@%@", BackendEndpoint, CommentsEndpoint, idString, @".json"];
+        
+        AFHTTPSessionManager *manager = [Network sessionManager];
+        
+        // Check if internet connection is available
+        if ([Reachability reachabilityForInternetConnection]){
+            [manager GET:commentsEndpointURL parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
+                NSDictionary *responseDict = (NSDictionary *)responseObject;
+                NSArray *commentsArray = (NSArray *)[responseDict objectForKey:CommentCommentParameter];
+                result(YES, nil, commentsArray);
+            }failure:^(NSURLSessionDataTask *task, NSError *error){
+                NSLog(@"Error downloading comments: [%@]", error);
+                result(NO, error, nil);
+            }];
+        } else {
+            result(NO, [NSError errorWithDomain:NoInternetConnectionErrorDomain code:NoInternetConnectionErrorCode userInfo:nil], nil);
+        }
+    }
+}
+
 @end

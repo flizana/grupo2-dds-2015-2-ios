@@ -10,4 +10,8 @@
 
 @interface ProposalTableViewCell : UITableViewCell
 
+@property (strong, nonatomic) IBOutlet UILabel *proposalLabel;
+@property (strong, nonatomic) IBOutlet UIButton *approveButton;
+@property (strong, nonatomic) IBOutlet UIButton *disapproveButton;
+
 @end

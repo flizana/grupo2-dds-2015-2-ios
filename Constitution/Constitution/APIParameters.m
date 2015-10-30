@@ -27,7 +27,7 @@ NSString *const ProposalUserIdParameter = @"proposal_user_id";
 /* Comment */
 NSString *const CommentIdParameter = @"comment_id";
 NSString *const CommentUserIdParameter = @"comment_user_id";
-NSString *const CommentCommentParameter = @"comment_comment";
+NSString *const CommentCommentParameter = @"comments";
 NSString *const CommentNumApprovalParameter = @"comment_num_approval";
 NSString *const CommentNumDisapprovalParameter = @"comment_num_disapproval";
 

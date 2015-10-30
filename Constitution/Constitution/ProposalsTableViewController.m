@@ -10,12 +10,12 @@
 #import "Network.h"
 #import "Proposal.h"
 #import "APIParameters.h"
+#import "ProposalDetailTableViewController.h"
 
 @interface ProposalsTableViewController ()
 
 @property (strong, nonatomic) NSArray *proposals;
-
-@property (nonatomic) unsigned long selectedProposalId;
+@property (strong, nonatomic) Proposal *selectedProposal;
 
 @end
 
@@ -102,12 +102,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Proposal *proposal = self.proposals[indexPath.row];
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0]};
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:17.0]};
     CGRect rect = [proposal.proposalText boundingRectWithSize:CGSizeMake(self.tableView.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
     if ((rect.size.height + 30) < 44.0){
         return 44.0;
     } else {
-        return rect.size.height + 70;
+        return rect.size.height + 30;
     }
 }
 
@@ -117,7 +117,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     Proposal *proposal = self.proposals[indexPath.row];
-    self.selectedProposalId = proposal.proposalId;
+    self.selectedProposal = proposal;
     [self performSegueWithIdentifier:@"proposalSegue" sender:self];
 }
 
@@ -162,7 +162,8 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"proposalSegue"]){
-        
+        ProposalDetailTableViewController *pdtvc = (ProposalDetailTableViewController *)[segue destinationViewController];
+        pdtvc.proposal = self.selectedProposal;
     }
 }
 

@@ -13,5 +13,6 @@
 
 + (AFHTTPSessionManager *)sessionManager;
 + (void)downloadProposalsWithBlock:(void (^)(BOOL, NSError *, NSArray *))result;
++ (void)downloadCommentsForProposalId:(unsigned long)proposalId withBLock:(void (^)(BOOL, NSError *, NSArray *))result;
 
 @end

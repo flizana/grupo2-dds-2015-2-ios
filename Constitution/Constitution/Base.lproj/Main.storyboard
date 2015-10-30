@@ -119,7 +119,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Proposals" id="vAm-cf-ilc"/>
                     <connections>
-                        <segue destination="Hvc-sp-52o" kind="show" id="h7X-Qw-kJp"/>
+                        <segue destination="Hvc-sp-52o" kind="show" identifier="proposalSegue" id="h7X-Qw-kJp"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z5m-sE-5YG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -130,12 +130,12 @@
         <scene sceneID="Id8-P3-3Yd">
             <objects>
                 <tableViewController id="Hvc-sp-52o" customClass="ProposalDetailTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="PIT-l8-Pvs">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="PIT-l8-Pvs">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="150" id="oh7-27-huq">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="proposalDetailCell" rowHeight="150" id="oh7-27-huq" customClass="ProposalTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oh7-27-huq" id="HXE-B3-VOT">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -151,7 +151,7 @@
                                             </state>
                                             <state key="selected" backgroundImage="Thumbs_Down_Filled_50.png"/>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Propuesta" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVm-Qq-ARg">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVm-Qq-ARg">
                                             <rect key="frame" x="8" y="8" width="584" height="75"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -181,22 +181,26 @@
                                         <constraint firstItem="GIH-iO-J79" firstAttribute="trailing" secondItem="HXE-B3-VOT" secondAttribute="trailingMargin" id="lui-Sm-cGO"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="approveButton" destination="ARE-cy-9np" id="OQ6-S8-fOA"/>
+                                    <outlet property="disapproveButton" destination="GIH-iO-J79" id="LCy-VE-pYG"/>
+                                    <outlet property="proposalLabel" destination="PVm-Qq-ARg" id="xyn-X9-N4g"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="170" id="2oS-5y-gu7">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="commentCell" rowHeight="170" id="2oS-5y-gu7" customClass="CommentTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2oS-5y-gu7" id="rsz-i5-qw5">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdr-Gc-6HU">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdr-Gc-6HU">
                                             <rect key="frame" x="8" y="8" width="584" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="ZRd-wW-mib"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comentario" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdU-uX-4fC">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdU-uX-4fC">
                                             <rect key="frame" x="8" y="37" width="584" height="58"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -240,8 +244,14 @@
                                         <constraint firstItem="98h-Lp-G2h" firstAttribute="bottom" secondItem="rsz-i5-qw5" secondAttribute="bottomMargin" id="zBy-GF-j0X"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="approveButton" destination="98h-Lp-G2h" id="ZXT-Wj-MNP"/>
+                                    <outlet property="commentLabel" destination="vdU-uX-4fC" id="F93-LF-15p"/>
+                                    <outlet property="disapproveButton" destination="bEv-3c-31L" id="UcN-Wj-Kba"/>
+                                    <outlet property="nameLabel" destination="Jdr-Gc-6HU" id="3lW-Ll-yrv"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="128" id="uGg-zD-kAC">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="insertCommentCell" rowHeight="128" id="uGg-zD-kAC" customClass="InsertCommentTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uGg-zD-kAC" id="GlI-IE-5ah">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -252,7 +262,6 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="111" id="eM8-ks-gbX"/>
                                             </constraints>
-                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
@@ -275,6 +284,10 @@
                                         <constraint firstItem="41t-Pl-heW" firstAttribute="top" secondItem="GlI-IE-5ah" secondAttribute="topMargin" id="vG6-b9-Ixf"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="insertCommentTextView" destination="41t-Pl-heW" id="Pau-jh-s76"/>
+                                    <outlet property="sendButton" destination="hAZ-q9-dbp" id="NG3-V7-g8h"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

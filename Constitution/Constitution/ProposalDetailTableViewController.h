@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Proposal.h"
 
 @interface ProposalDetailTableViewController : UITableViewController
+
+@property (strong, nonatomic) Proposal *proposal;
 
 @end

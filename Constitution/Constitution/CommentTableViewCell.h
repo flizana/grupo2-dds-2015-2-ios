@@ -10,4 +10,9 @@
 
 @interface CommentTableViewCell : UITableViewCell
 
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *commentLabel;
+@property (strong, nonatomic) IBOutlet UIButton *approveButton;
+@property (strong, nonatomic) IBOutlet UIButton *disapproveButton;
+
 @end
