@@ -110,13 +110,14 @@ static User *currentUser = nil;
         if (![self.password isEqualToString:@""] && ![self.firstName isEqualToString:@""] && ![self.lastName isEqualToString:@""] && ![self.email isEqualToString:@""]){
             
             // Set information into NSDictionary
-            NSDictionary *params = @{FirstNameParameter: self.firstName,
-                                     LastNameParameter: self.lastName,
-                                     PasswordParameter: self.password,
-                                     EmailParameter: self.email,
-                                     GenderParameter: self.gender,
-                                     RegionParameter: self.region,
-                                     CityParameter: self.city};
+            NSDictionary *params = @{UserParameter:@{ FirstNameParameter: self.firstName,
+                                                      LastNameParameter: self.lastName,
+                                                      PasswordParameter: self.password,
+                                                      PasswordConfirmationParameter: self.password,
+                                                      EmailParameter: self.email,
+                                                      GenderParameter: self.gender,
+                                                      RegionParameter: self.region,
+                                                      CityParameter: self.city}};
             
             // Set endpoint URL
             NSString *signUpEndpointURL = [NSString stringWithFormat:@"%@%@", BackendEndpoint, SignUpEndpoint];

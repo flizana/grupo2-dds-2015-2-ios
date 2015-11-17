@@ -399,12 +399,18 @@ typedef enum tableViewSection{
             // Set gender, city and region if they are not blank
             if (gender && ![gender isEqualToString:@""]){
                 [newUser syncGender:gender];
+            } else {
+                [newUser syncGender:@""];
             }
             if (city && ![city isEqualToString:@""]){
                 [newUser syncCity:city];
+            } else {
+                [newUser syncCity:@""];
             }
             if (region && ![region isEqualToString:@""]){
                 [newUser syncRegion:region];
+            } else {
+                [newUser syncRegion:@""];
             }
             
             // Sign up user

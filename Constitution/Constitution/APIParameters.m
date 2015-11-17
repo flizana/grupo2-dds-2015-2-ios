@@ -14,11 +14,15 @@ NSString *const UserIdParameter = @"id";
 NSString *const FirstNameParameter = @"first_name";
 NSString *const LastNameParameter = @"last_name";
 NSString *const PasswordParameter = @"password";
+NSString *const PasswordConfirmationParameter = @"password_confirmation";
 NSString *const EmailParameter = @"email";
+NSString *const BirthDateParameter = @"birth_date";
 NSString *const GenderParameter = @"gender";
 NSString *const RegionParameter = @"region";
 NSString *const CityParameter = @"city";
 NSString *const ProfileParameter = @"profile";
+NSString *const AccessLevelParameter = @"nivel_accesso";
+NSString *const RecoverDigestParameter = @"recover_digest";
 
 /* Proposal */
 NSString *const ProposalIdParameter = @"proposal_id";

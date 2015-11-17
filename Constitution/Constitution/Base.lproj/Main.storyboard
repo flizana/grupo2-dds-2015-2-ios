@@ -417,7 +417,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="286-KA-AI5" kind="show" identifier="signupSuccessSegue" id="war-J5-Yqi"/>
+                        <segue destination="286-KA-AI5" kind="presentation" identifier="signupSuccessSegue" id="war-J5-Yqi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ysh-GP-rMI" userLabel="First Responder" sceneMemberID="firstResponder"/>

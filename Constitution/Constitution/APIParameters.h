@@ -14,6 +14,7 @@ FOUNDATION_EXPORT NSString *const UserIdParameter;
 FOUNDATION_EXPORT NSString *const FirstNameParameter;
 FOUNDATION_EXPORT NSString *const LastNameParameter;
 FOUNDATION_EXPORT NSString *const PasswordParameter;
+FOUNDATION_EXPORT NSString *const PasswordConfirmationParameter;
 FOUNDATION_EXPORT NSString *const EmailParameter;
 FOUNDATION_EXPORT NSString *const GenderParameter;
 FOUNDATION_EXPORT NSString *const BirthDateParameter;
@@ -21,6 +22,8 @@ FOUNDATION_EXPORT NSString *const AgeParameter;
 FOUNDATION_EXPORT NSString *const RegionParameter;
 FOUNDATION_EXPORT NSString *const CityParameter;
 FOUNDATION_EXPORT NSString *const ProfileParameter;
+FOUNDATION_EXPORT NSString *const AccessLevelParameter;
+FOUNDATION_EXPORT NSString *const RecoverDigestParameter;
 
 /* Proposal */
 FOUNDATION_EXPORT NSString *const ProposalIdParameter;
