@@ -11,19 +11,17 @@
 /* Users */
 FOUNDATION_EXPORT NSString *const UserParameter;
 FOUNDATION_EXPORT NSString *const UserIdParameter;
+FOUNDATION_EXPORT NSString *const UsernameParameter;
 FOUNDATION_EXPORT NSString *const FirstNameParameter;
 FOUNDATION_EXPORT NSString *const LastNameParameter;
 FOUNDATION_EXPORT NSString *const PasswordParameter;
 FOUNDATION_EXPORT NSString *const PasswordConfirmationParameter;
 FOUNDATION_EXPORT NSString *const EmailParameter;
 FOUNDATION_EXPORT NSString *const GenderParameter;
-FOUNDATION_EXPORT NSString *const BirthDateParameter;
-FOUNDATION_EXPORT NSString *const AgeParameter;
 FOUNDATION_EXPORT NSString *const RegionParameter;
 FOUNDATION_EXPORT NSString *const CityParameter;
 FOUNDATION_EXPORT NSString *const ProfileParameter;
-FOUNDATION_EXPORT NSString *const AccessLevelParameter;
-FOUNDATION_EXPORT NSString *const RecoverDigestParameter;
+FOUNDATION_EXPORT NSString *const SessionParameter;
 
 /* Proposal */
 FOUNDATION_EXPORT NSString *const ProposalIdParameter;
@@ -38,6 +36,8 @@ FOUNDATION_EXPORT NSString *const CommentNumDisapprovalParameter;
 
 /* HTTP Request */
 FOUNDATION_EXPORT NSString *const UserTokenParameter;
+FOUNDATION_EXPORT NSString *const HTTPHeaderTokenParameter;
 
 /* HTTP Response */
 FOUNDATION_EXPORT NSString *const SuccessParamater;
+FOUNDATION_EXPORT NSString *const ErrorParameter;

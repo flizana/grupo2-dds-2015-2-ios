@@ -42,7 +42,8 @@ static User *currentUser = nil;
 
 - (void)syncPassword:(NSString *)password
 {
-    self.password = [Crypto SHA256encrypt:password];
+    //self.password = [Crypto SHA256encrypt:password];
+    self.password = password;
 }
 
 - (NSString *)getFirstName
@@ -231,11 +232,11 @@ static User *currentUser = nil;
         if (![email isEqualToString:@""] && ![password isEqualToString:@""]){
             
             // Hash password
-            NSString *hashedPassword = [Crypto SHA256encrypt:password];
+            //NSString *hashedPassword = [Crypto SHA256encrypt:password];
             
             // Set information into NSDictionary
-            NSDictionary *params = @{EmailParameter: email,
-                                     PasswordParameter: hashedPassword};
+            NSDictionary *params = @{SessionParameter:@{UsernameParameter: email,
+                                                        PasswordParameter: password}};
             
             // Set endpoint URL
             NSString *logInEndpointURL = [NSString stringWithFormat:@"%@%@", BackendEndpoint, LogInEndpoint];
@@ -246,30 +247,34 @@ static User *currentUser = nil;
             if ([Reachability reachabilityForInternetConnection]){
                 [manager POST:logInEndpointURL parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
                     NSDictionary *responseDict = (NSDictionary *)responseObject;
-                    unsigned long userId = (long)[(NSNumber *)[responseDict objectForKey:@"user_id"] longValue];
-                    NSString *token = (NSString *)[responseDict objectForKey:@"token"];
-                    NSString *profileEndpointURL = (NSString *)[responseDict objectForKey:ProfileParameter];
-                    NSMutableDictionary *user = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                                 [NSNumber numberWithUnsignedLong:userId], UserIdParameter,
-                                                 token, UserTokenParameter,
-                                                 nil];
-                    [manager GET:profileEndpointURL parameters:[NSDictionary dictionaryWithDictionary:user] success:^(NSURLSessionDataTask *task, id responseObject){
-                        NSDictionary *responseDict = (NSDictionary *)responseObject;
-                        NSString *email = (NSString *)[responseDict objectForKey:EmailParameter];
-                        NSString *firstName = (NSString *)[responseDict objectForKey:FirstNameParameter];
-                        NSString *lastName = (NSString *)[responseDict objectForKey:LastNameParameter];
+                    NSString *error = [responseDict objectForKey:ErrorParameter];
+                    if (error){
+                        NSLog(@"Error logging in user: %@", error);
+                        result(NO, [NSError errorWithDomain:error code:LogInServerErrorCode userInfo:nil]);
+                    } else {
+                        unsigned long userId = (long)[(NSNumber *)[responseDict objectForKey:UserIdParameter] longValue];
+                        NSString *token = (NSString *)[responseDict objectForKey:UserTokenParameter];
+                        NSString *profileEndpointURL = [NSString stringWithFormat:@"%@%@%@%li%@", BackendEndpoint, UsersEndpoint, @"/", userId, @".json"];
+                        [manager.requestSerializer setValue:token forHTTPHeaderField:HTTPHeaderTokenParameter];
+                        [manager GET:profileEndpointURL parameters:nil success:^(NSURLSessionDataTask *task, id responseObject){
+                            NSDictionary *responseDict = (NSDictionary *)responseObject;
+                            NSString *email = (NSString *)[responseDict objectForKey:EmailParameter];
+                            NSString *firstName = (NSString *)[responseDict objectForKey:FirstNameParameter];
+                            NSString *lastName = (NSString *)[responseDict objectForKey:LastNameParameter];
+                            
+                            NSMutableDictionary *user = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedLong:userId], UserIdParameter, token, UserTokenParameter, nil];
+                            [user setObject:email forKey:EmailParameter];
+                            [user setObject:firstName forKey:FirstNameParameter];
+                            [user setObject:lastName forKey:LastNameParameter];
                         
-                        [user setObject:email forKey:EmailParameter];
-                        [user setObject:firstName forKey:FirstNameParameter];
-                        [user setObject:lastName forKey:LastNameParameter];
-                        
-                        [User setCurrentUser:[NSDictionary dictionaryWithDictionary:user]];
-                        result(YES, nil);
-                        
-                    }failure:^(NSURLSessionDataTask *task, NSError *error){
-                        NSLog(@"Error getting profile data: [%@]", error);
-                        result(NO, error);
-                    }];
+                            [User setCurrentUser:[NSDictionary dictionaryWithDictionary:user]];
+                            result(YES, nil);
+                        }failure:^(NSURLSessionDataTask *task, NSError *error){
+                            NSLog(@"Error getting profile data: [%@]", error);
+                            result(NO, error);
+                        }];
+                    }
+
                 }failure:^(NSURLSessionDataTask *task, NSError *error){
                     NSLog(@"Error logging in user: [%@]", error);
                     result(NO, error);

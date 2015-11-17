@@ -10,19 +10,18 @@
 
 /* Users */
 NSString *const UserParameter = @"user";
-NSString *const UserIdParameter = @"id";
+NSString *const UserIdParameter = @"user_id";
+NSString *const UsernameParameter = @"username";
 NSString *const FirstNameParameter = @"first_name";
 NSString *const LastNameParameter = @"last_name";
 NSString *const PasswordParameter = @"password";
 NSString *const PasswordConfirmationParameter = @"password_confirmation";
 NSString *const EmailParameter = @"email";
-NSString *const BirthDateParameter = @"birth_date";
 NSString *const GenderParameter = @"gender";
 NSString *const RegionParameter = @"region";
 NSString *const CityParameter = @"city";
 NSString *const ProfileParameter = @"profile";
-NSString *const AccessLevelParameter = @"nivel_accesso";
-NSString *const RecoverDigestParameter = @"recover_digest";
+NSString *const SessionParameter = @"session";
 
 /* Proposal */
 NSString *const ProposalIdParameter = @"proposal_id";
@@ -37,6 +36,8 @@ NSString *const CommentNumDisapprovalParameter = @"comment_num_disapproval";
 
 /* HTTP Request */
 NSString *const UserTokenParameter = @"user_token";
+NSString *const HTTPHeaderTokenParameter = @"token";
 
 /* HTTP Response */
 NSString *const SuccessParamater = @"success";
+NSString *const ErrorParameter = @"error";

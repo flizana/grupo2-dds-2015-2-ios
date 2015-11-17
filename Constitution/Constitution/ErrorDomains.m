@@ -26,6 +26,8 @@ NSInteger const SaveUserFieldNotSetErrorCode = 202;
 NSString *const SaveUserFieldBlankErrorDomain = @"Save user field blank";
 NSInteger const SaveUserFieldBlankErrorCode = 203;
 
+NSInteger const LogInServerErrorCode = 301;
+
 NSString *const LogInFieldNotSetErrorDomain = @"Log in field not set";
 NSInteger const LogInFieldNotSetErrorCode = 302;
 

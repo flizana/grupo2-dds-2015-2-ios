@@ -12,6 +12,7 @@
 @interface Network : NSObject
 
 + (AFHTTPSessionManager *)sessionManager;
++ (AFHTTPSessionManager *)authSessionManager;
 + (void)downloadProposalsWithBlock:(void (^)(BOOL, NSError *, NSArray *))result;
 + (void)downloadCommentsForProposalId:(unsigned long)proposalId withBLock:(void (^)(BOOL, NSError *, NSArray *))result;
 

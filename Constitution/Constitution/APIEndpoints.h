@@ -19,3 +19,4 @@ FOUNDATION_EXPORT NSString *const CommentsEndpoint;
 FOUNDATION_EXPORT NSString *const CommentApproveEndpoint;
 FOUNDATION_EXPORT NSString *const CommentDisapproveEndpoint;
 FOUNDATION_EXPORT NSString *const InsertCommentEndpoint;
+FOUNDATION_EXPORT NSString *const UsersEndpoint;

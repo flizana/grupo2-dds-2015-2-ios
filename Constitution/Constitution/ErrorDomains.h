@@ -26,6 +26,8 @@ FOUNDATION_EXPORT NSInteger const SaveUserFieldNotSetErrorCode;
 FOUNDATION_EXPORT NSString *const SaveUserFieldBlankErrorDomain;
 FOUNDATION_EXPORT NSInteger const SaveUserFieldBlankErrorCode;
 
+FOUNDATION_EXPORT NSInteger const LogInServerErrorCode;
+
 FOUNDATION_EXPORT NSString *const LogInFieldNotSetErrorDomain;
 FOUNDATION_EXPORT NSInteger const LogInFieldNotSetErrorCode;
 
