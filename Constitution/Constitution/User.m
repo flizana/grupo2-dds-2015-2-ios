@@ -105,9 +105,9 @@ static User *currentUser = nil;
 - (void)signUp:(void (^)(BOOL success, NSError *error))result
 {
     // Check if all fields are set
-    if (self.password && self.firstName && self.lastName && self.email && self.gender && self.region && self.city){
+    if (self.password && self.firstName && self.lastName && self.email){
         // Check if a field is set but blank
-        if (![self.password isEqualToString:@""] && ![self.firstName isEqualToString:@""] && ![self.lastName isEqualToString:@""] && ![self.email isEqualToString:@""] && ![self.gender isEqualToString:@""] && ![self.region isEqualToString:@""] && ![self.city isEqualToString:@""]){
+        if (![self.password isEqualToString:@""] && ![self.firstName isEqualToString:@""] && ![self.lastName isEqualToString:@""] && ![self.email isEqualToString:@""]){
             
             // Set information into NSDictionary
             NSDictionary *params = @{FirstNameParameter: self.firstName,
