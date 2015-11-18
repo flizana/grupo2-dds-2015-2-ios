@@ -58,11 +58,25 @@
     for (NSDictionary *comm in comments){
         NSDictionary *serverComment = [comm objectForKey:@"comment"];
         Comment *comment = [[Comment alloc] init];
-        comment.commentId = [(NSNumber *)[serverComment objectForKey:@"comment_id"] unsignedLongValue];
-        comment.comment = (NSString *)[serverComment objectForKey:@"text"];
-        comment.userId = [(NSNumber *)[serverComment objectForKey:@"author_id"] unsignedLongValue];
-        comment.userFirstName = (NSString *)[serverComment objectForKey:@"author_first"];
-        comment.userLastName = (NSString *)[serverComment objectForKey:@"author_last"];
+        comment.commentId = [(NSNumber *)[serverComment objectForKey:CommentIdParameter] unsignedLongValue];
+        comment.comment = (NSString *)[serverComment objectForKey:CommentTextParameter];
+        comment.userId = [(NSNumber *)[serverComment objectForKey:CommentUserIdParameter] unsignedLongValue];
+        comment.userFirstName = (NSString *)[serverComment objectForKey:CommentUserFirstNameParameter];
+        comment.userLastName = (NSString *)[serverComment objectForKey:CommentUserLastNameParameter];
+        comment.numApproval = (unsigned long)[(NSNumber *)[serverComment objectForKey:CommentNumApprovalParameter] unsignedLongValue];
+        comment.numDisapproval = (unsigned long)[(NSNumber *)[serverComment objectForKey:CommentNumDisapprovalParameter] unsignedLongValue];
+        NSString *userApprovesString = (NSString *)[serverComment objectForKey:CommentUserApprovesParameter];
+        NSString *userDisapprovesString = (NSString *)[serverComment objectForKey:CommentUserDisapprovesParameter];
+        if ([userApprovesString isEqualToString:@"true"]){
+            comment.userApproves = YES;
+        } else {
+            comment.userApproves = NO;
+        }
+        if ([userDisapprovesString isEqualToString:@"true"]){
+            comment.userDisapproves = YES;
+        } else {
+            comment.userDisapproves = NO;
+        }
         [commentsArray addObject:comment];
     }
     self.comments = [NSArray arrayWithArray:commentsArray];
@@ -139,7 +153,9 @@
         cell.approveLabel.textAlignment = NSTextAlignmentRight;
         cell.disapproveLabel.text = [NSString stringWithFormat:@"%li", self.proposal.numDisapproval];
         cell.disapproveLabel.textAlignment = NSTextAlignmentRight;
+        [cell.approveButton setEnabled:!self.proposal.userApproves];
         [cell.approveButton setSelected:self.proposal.userApproves];
+        [cell.disapproveButton setEnabled:!self.proposal.userDisapproves];
         [cell.disapproveButton setSelected:self.proposal.userDisapproves];
         
         return cell;
@@ -155,6 +171,14 @@
         cell.commentLabel.numberOfLines = 0;
         cell.commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
         cell.commentLabel.text = comment.comment;
+        cell.approveLabel.text = [NSString stringWithFormat:@"%li", comment.numApproval];
+        cell.approveLabel.textAlignment = NSTextAlignmentRight;
+        cell.disapproveLabel.text = [NSString stringWithFormat:@"%li", comment.numDisapproval];
+        cell.disapproveLabel.textAlignment = NSTextAlignmentRight;
+        [cell.approveButton setEnabled:!comment.userApproves];
+        [cell.approveButton setSelected:comment.userApproves];
+        [cell.disapproveButton setEnabled:!comment.userDisapproves];
+        [cell.disapproveButton setSelected:comment.userDisapproves];
         
         return cell;
     } else { // Insert comment section

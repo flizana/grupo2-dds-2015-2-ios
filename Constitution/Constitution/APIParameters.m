@@ -36,10 +36,15 @@ NSString *const ProposalURLParameter = @"url";
 
 /* Comment */
 NSString *const CommentIdParameter = @"comment_id";
-NSString *const CommentUserIdParameter = @"comment_user_id";
+NSString *const CommentUserIdParameter = @"author_id";
 NSString *const CommentCommentParameter = @"comments";
-NSString *const CommentNumApprovalParameter = @"comment_num_approval";
-NSString *const CommentNumDisapprovalParameter = @"comment_num_disapproval";
+NSString *const CommentNumApprovalParameter = @"likes";
+NSString *const CommentNumDisapprovalParameter = @"dislikes";
+NSString *const CommentUserFirstNameParameter = @"author_first";
+NSString *const CommentUserLastNameParameter = @"author_last";
+NSString *const CommentTextParameter = @"texto";
+NSString *const CommentUserApprovesParameter = @"user_likes";
+NSString *const CommentUserDisapprovesParameter = @"user_dislikes";
 
 /* HTTP Request */
 NSString *const UserTokenParameter = @"user_token";

@@ -15,8 +15,10 @@
 @property (nonatomic) unsigned long userId;
 @property (strong, nonatomic) NSString *userFirstName;
 @property (strong, nonatomic) NSString *userLastName;
-@property (nonatomic) NSInteger numApproval;
-@property (nonatomic) NSInteger numDisapproval;
+@property (nonatomic) unsigned long numApproval;
+@property (nonatomic) unsigned long numDisapproval;
+@property (nonatomic) BOOL userApproves;
+@property (nonatomic) BOOL userDisapproves;
 
 #pragma mark - Instance Methods
 

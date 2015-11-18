@@ -40,6 +40,11 @@ FOUNDATION_EXPORT NSString *const CommentUserIdParameter;
 FOUNDATION_EXPORT NSString *const CommentCommentParameter;
 FOUNDATION_EXPORT NSString *const CommentNumApprovalParameter;
 FOUNDATION_EXPORT NSString *const CommentNumDisapprovalParameter;
+FOUNDATION_EXPORT NSString *const CommentUserFirstNameParameter;
+FOUNDATION_EXPORT NSString *const CommentUserLastNameParameter;
+FOUNDATION_EXPORT NSString *const CommentTextParameter;
+FOUNDATION_EXPORT NSString *const CommentUserApprovesParameter;
+FOUNDATION_EXPORT NSString *const CommentUserDisapprovesParameter;
 
 /* HTTP Request */
 FOUNDATION_EXPORT NSString *const UserTokenParameter;
