@@ -26,6 +26,14 @@
     
     self.proposals = nil;
     
+    // Initialize the refresh control.
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor whiteColor];
+    self.refreshControl.tintColor = [UIColor grayColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(downloadProposals)
+                  forControlEvents:UIControlEventValueChanged];
+    
     [self downloadProposals];
 }
 
@@ -43,10 +51,10 @@
             if (success){
                 [self parseProposals:proposals];
             } else {
-                NSLog(@"Error downloading proposals.");
+                [self alertStatus:@"Download Failed" message:@"Could not download proposals. Please try again."];
             }
         } else {
-            NSLog(@"Error downloading proposals: [%@]", error);
+            [self alertStatus:@"Download Failed" message:@"Could not download proposals. Please try again."];
         }
     }];
 }
@@ -58,14 +66,45 @@
     NSMutableArray *proposalsArray = [NSMutableArray array];
     for (NSDictionary *prop in proposals){
         Proposal *proposal = [[Proposal alloc] init];
-        proposal.proposalId = (unsigned long)[(NSNumber *)[prop objectForKey:@"id"] unsignedLongValue];
-        proposal.proposalText = (NSString *)[prop objectForKey:@"texto"];
-        proposal.userId = (unsigned long)[(NSNumber *)[prop objectForKey:@"user_id"] unsignedLongValue];
-        proposal.proposalURL = (NSString *)[prop objectForKey:@"url"];
+        proposal.proposalId = (unsigned long)[(NSNumber *)[prop objectForKey:ProposalIdParameter] unsignedLongValue];
+        proposal.proposalTitle = (NSString *)[prop objectForKey:ProposalTitleParameter];
+        proposal.proposalText = (NSString *)[prop objectForKey:ProposalTextParameter];
+        proposal.userId = (unsigned long)[(NSNumber *)[prop objectForKey:ProposalUserIdParameter] unsignedLongValue];
+        proposal.proposalURL = (NSString *)[prop objectForKey:ProposalURLParameter];
+        proposal.numApproval = (unsigned long)[(NSNumber *)[prop objectForKey:ProposalApprovesParameter] unsignedLongValue];
+        proposal.numDisapproval = (unsigned long)[(NSNumber *)[prop objectForKey:ProposalDisapprovesParameter] unsignedLongValue];
+        
+        NSString *userApprovesString = (NSString *)[prop objectForKey:ProposalUserApprovesParameter];
+        NSString *userDisapprovesString = (NSString *)[prop objectForKey:ProposalUserDisapprovesParameter];
+        if ([userApprovesString isEqualToString:@"true"]){
+            proposal.userApproves = YES;
+        } else {
+            proposal.userApproves = NO;
+        }
+        if ([userDisapprovesString isEqualToString:@"true"]){
+            proposal.userDisapproves = YES;
+        } else {
+            proposal.userDisapproves = NO;
+        }
         [proposalsArray addObject:proposal];
     }
     self.proposals = [NSArray arrayWithArray:proposalsArray];
     [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+}
+
+#pragma mark - UIAlert
+
+- (void)alertStatus:(NSString *)title message:(NSString *)message
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                               style:UIAlertActionStyleDefault
+                               handler:nil];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
@@ -93,7 +132,7 @@
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     Proposal *proposal = self.proposals[indexPath.row];
-    cell.textLabel.text = proposal.proposalText;
+    cell.textLabel.text = proposal.proposalTitle;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
@@ -103,7 +142,7 @@
 {
     Proposal *proposal = self.proposals[indexPath.row];
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:17.0]};
-    CGRect rect = [proposal.proposalText boundingRectWithSize:CGSizeMake(self.tableView.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
+    CGRect rect = [proposal.proposalTitle boundingRectWithSize:CGSizeMake(self.tableView.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
     if ((rect.size.height + 30) < 44.0){
         return 44.0;
     } else {

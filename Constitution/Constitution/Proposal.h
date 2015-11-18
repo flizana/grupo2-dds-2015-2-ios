@@ -11,12 +11,15 @@
 @interface Proposal : NSObject
 
 @property (nonatomic) unsigned long proposalId;
+@property (strong, nonatomic) NSString *proposalTitle;
 @property (strong, nonatomic) NSString *proposalText;
 @property (nonatomic) unsigned long userId;
 @property (strong, nonatomic) NSString *proposalURL;
 @property (strong, nonatomic) NSArray *comments;
-@property (nonatomic) NSInteger numApproval;
-@property (nonatomic) NSInteger numDisapproval;
+@property (nonatomic) unsigned long numApproval;
+@property (nonatomic) unsigned long numDisapproval;
+@property (nonatomic) BOOL userApproves;
+@property (nonatomic) BOOL userDisapproves;
 
 #pragma mark - Instance Methods
 

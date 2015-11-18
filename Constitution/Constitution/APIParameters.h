@@ -26,6 +26,13 @@ FOUNDATION_EXPORT NSString *const SessionParameter;
 /* Proposal */
 FOUNDATION_EXPORT NSString *const ProposalIdParameter;
 FOUNDATION_EXPORT NSString *const ProposalUserIdParameter;
+FOUNDATION_EXPORT NSString *const ProposalTitleParameter;
+FOUNDATION_EXPORT NSString *const ProposalTextParameter;
+FOUNDATION_EXPORT NSString *const ProposalApprovesParameter;
+FOUNDATION_EXPORT NSString *const ProposalDisapprovesParameter;
+FOUNDATION_EXPORT NSString *const ProposalUserApprovesParameter;
+FOUNDATION_EXPORT NSString *const ProposalUserDisapprovesParameter;
+FOUNDATION_EXPORT NSString *const ProposalURLParameter;
 
 /* Comment */
 FOUNDATION_EXPORT NSString *const CommentIdParameter;

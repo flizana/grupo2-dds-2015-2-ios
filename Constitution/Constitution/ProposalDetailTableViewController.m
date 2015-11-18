@@ -107,7 +107,7 @@
     if (indexPath.section == 0){
         NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:17.0]};
         CGRect rect = [self.proposal.proposalText boundingRectWithSize:CGSizeMake(self.tableView.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
-        return rect.size.height + 95;
+        return rect.size.height + 125;
     } else if (indexPath.section == 1){
         Comment *comment = self.comments[indexPath.row];
         NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:17.0]};
@@ -129,7 +129,9 @@
         if (!cell){
             cell = [[ProposalTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:proposalCellIdentifier];
         }
-        
+        cell.titleLabel.numberOfLines = 0;
+        cell.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        cell.titleLabel.text = self.proposal.proposalTitle;
         cell.proposalLabel.numberOfLines = 0;
         cell.proposalLabel.lineBreakMode = NSLineBreakByWordWrapping;
         cell.proposalLabel.text = self.proposal.proposalText;

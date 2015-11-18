@@ -42,7 +42,6 @@ static User *currentUser = nil;
 
 - (void)syncPassword:(NSString *)password
 {
-    //self.password = [Crypto SHA256encrypt:password];
     self.password = password;
 }
 
@@ -100,6 +99,7 @@ static User *currentUser = nil;
 - (void)syncUserToken:(NSString *)userToken
 {
     KeychainAccess *keychain = [[KeychainAccess alloc] init];
+    [keychain deleteObjectForKey:self.email];
     [keychain mySetObject:userToken forKey:self.email];
 }
 
@@ -254,6 +254,7 @@ static User *currentUser = nil;
                     } else {
                         unsigned long userId = (long)[(NSNumber *)[responseDict objectForKey:UserIdParameter] longValue];
                         NSString *token = (NSString *)[responseDict objectForKey:UserTokenParameter];
+                        NSMutableDictionary *user = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedLong:userId], UserIdParameter, token, UserTokenParameter, nil];
                         NSString *profileEndpointURL = [NSString stringWithFormat:@"%@%@%@%li%@", BackendEndpoint, UsersEndpoint, @"/", userId, @".json"];
                         [manager.requestSerializer setValue:token forHTTPHeaderField:HTTPHeaderTokenParameter];
                         [manager GET:profileEndpointURL parameters:nil success:^(NSURLSessionDataTask *task, id responseObject){
@@ -262,11 +263,9 @@ static User *currentUser = nil;
                             NSString *firstName = (NSString *)[responseDict objectForKey:FirstNameParameter];
                             NSString *lastName = (NSString *)[responseDict objectForKey:LastNameParameter];
                             
-                            NSMutableDictionary *user = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedLong:userId], UserIdParameter, token, UserTokenParameter, nil];
-                            [user setObject:email forKey:EmailParameter];
                             [user setObject:firstName forKey:FirstNameParameter];
                             [user setObject:lastName forKey:LastNameParameter];
-                        
+                            [user setObject:email forKey:EmailParameter];
                             [User setCurrentUser:[NSDictionary dictionaryWithDictionary:user]];
                             result(YES, nil);
                         }failure:^(NSURLSessionDataTask *task, NSError *error){

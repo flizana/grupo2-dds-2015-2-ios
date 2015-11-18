@@ -24,8 +24,15 @@ NSString *const ProfileParameter = @"profile";
 NSString *const SessionParameter = @"session";
 
 /* Proposal */
-NSString *const ProposalIdParameter = @"proposal_id";
-NSString *const ProposalUserIdParameter = @"proposal_user_id";
+NSString *const ProposalIdParameter = @"id";
+NSString *const ProposalUserIdParameter = @"user_id";
+NSString *const ProposalTitleParameter = @"titulo";
+NSString *const ProposalTextParameter = @"texto";
+NSString *const ProposalApprovesParameter = @"likes";
+NSString *const ProposalDisapprovesParameter = @"dislikes";
+NSString *const ProposalUserApprovesParameter = @"user_likes";
+NSString *const ProposalUserDisapprovesParameter = @"user_dislikes";
+NSString *const ProposalURLParameter = @"url";
 
 /* Comment */
 NSString *const CommentIdParameter = @"comment_id";

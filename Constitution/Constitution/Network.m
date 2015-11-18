@@ -34,6 +34,7 @@
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     User *currentUser = [User currentUser];
     if (currentUser){
+        NSString *token = [currentUser getUserToken];
         [manager.requestSerializer setValue:[currentUser getUserToken] forHTTPHeaderField:HTTPHeaderTokenParameter];
     }
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
