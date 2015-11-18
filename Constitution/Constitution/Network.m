@@ -26,24 +26,35 @@
     return manager;
 }
 
++ (AFHTTPSessionManager *)authSessionManager
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    User *currentUser = [User currentUser];
+    if (currentUser){
+        [manager.requestSerializer setValue:[currentUser getUserToken] forHTTPHeaderField:HTTPHeaderTokenParameter];
+    }
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    return manager;
+}
+
 + (void)downloadProposalsWithBlock:(void (^)(BOOL, NSError *, NSArray *))result
 {
     User *currentUser = [User currentUser];
     if (!currentUser){
         result(NO, [NSError errorWithDomain:CurrentUserNilErrorDomain code:CurrentUserNilErrorCode userInfo:nil], nil);
     } else {
-        // Set information into NSDictionary
-        NSDictionary *params = @{UserIdParameter: [NSNumber numberWithLong:[currentUser getUserId]],
-                                 UserTokenParameter: [currentUser getUserToken]};
-        
         // Set endpoint URL
         NSString *proposalsEndpointURL = [NSString stringWithFormat:@"%@%@", BackendEndpoint, ProposalsEndpoint];
         
-        AFHTTPSessionManager *manager = [Network sessionManager];
+        AFHTTPSessionManager *manager = [Network authSessionManager];
         
         // Check if internet connection is available
         if ([Reachability reachabilityForInternetConnection]){
-            [manager GET:proposalsEndpointURL parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
+            [manager GET:proposalsEndpointURL parameters:nil success:^(NSURLSessionDataTask *task, id responseObject){
                 NSArray *responseArray = (NSArray *)responseObject;
                 result(YES, nil, responseArray);
             }failure:^(NSURLSessionDataTask *task, NSError *error){
