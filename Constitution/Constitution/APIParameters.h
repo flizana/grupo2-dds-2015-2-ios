@@ -49,6 +49,11 @@ FOUNDATION_EXPORT NSString *const CommentUserDisapprovesParameter;
 /* HTTP Request */
 FOUNDATION_EXPORT NSString *const UserTokenParameter;
 FOUNDATION_EXPORT NSString *const HTTPHeaderTokenParameter;
+FOUNDATION_EXPORT NSString *const ApproveProposal;
+FOUNDATION_EXPORT NSString *const ApproveScore;
+FOUNDATION_EXPORT NSString *const ApproveComment;
+FOUNDATION_EXPORT NSString *const InsertComment;
+FOUNDATION_EXPORT NSString *const InsertCommentText;
 
 /* HTTP Response */
 FOUNDATION_EXPORT NSString *const SuccessParamater;

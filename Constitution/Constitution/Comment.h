@@ -13,6 +13,7 @@
 @property (nonatomic) unsigned long commentId;
 @property (strong, nonatomic) NSString *comment;
 @property (nonatomic) unsigned long userId;
+@property (nonatomic) unsigned long proposalId;
 @property (strong, nonatomic) NSString *userFirstName;
 @property (strong, nonatomic) NSString *userLastName;
 @property (nonatomic) unsigned long numApproval;

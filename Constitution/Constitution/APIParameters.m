@@ -49,6 +49,11 @@ NSString *const CommentUserDisapprovesParameter = @"user_dislikes";
 /* HTTP Request */
 NSString *const UserTokenParameter = @"user_token";
 NSString *const HTTPHeaderTokenParameter = @"token";
+NSString *const ApproveProposal = @"proplike";
+NSString *const ApproveScore = @"score";
+NSString *const ApproveComment = @"like";
+NSString *const InsertComment = @"comment";
+NSString *const InsertCommentText = @"texto";
 
 /* HTTP Response */
 NSString *const SuccessParamater = @"success";

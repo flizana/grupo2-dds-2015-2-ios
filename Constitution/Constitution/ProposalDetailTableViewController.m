@@ -59,6 +59,7 @@
         NSDictionary *serverComment = [comm objectForKey:@"comment"];
         Comment *comment = [[Comment alloc] init];
         comment.commentId = [(NSNumber *)[serverComment objectForKey:CommentIdParameter] unsignedLongValue];
+        comment.proposalId = self.proposal.proposalId;
         comment.comment = (NSString *)[serverComment objectForKey:CommentTextParameter];
         comment.userId = [(NSNumber *)[serverComment objectForKey:CommentUserIdParameter] unsignedLongValue];
         comment.userFirstName = (NSString *)[serverComment objectForKey:CommentUserFirstNameParameter];
@@ -153,9 +154,7 @@
         cell.approveLabel.textAlignment = NSTextAlignmentRight;
         cell.disapproveLabel.text = [NSString stringWithFormat:@"%li", self.proposal.numDisapproval];
         cell.disapproveLabel.textAlignment = NSTextAlignmentRight;
-        [cell.approveButton setEnabled:!self.proposal.userApproves];
         [cell.approveButton setSelected:self.proposal.userApproves];
-        [cell.disapproveButton setEnabled:!self.proposal.userDisapproves];
         [cell.disapproveButton setSelected:self.proposal.userDisapproves];
         
         return cell;
@@ -175,9 +174,7 @@
         cell.approveLabel.textAlignment = NSTextAlignmentRight;
         cell.disapproveLabel.text = [NSString stringWithFormat:@"%li", comment.numDisapproval];
         cell.disapproveLabel.textAlignment = NSTextAlignmentRight;
-        [cell.approveButton setEnabled:!comment.userApproves];
         [cell.approveButton setSelected:comment.userApproves];
-        [cell.disapproveButton setEnabled:!comment.userDisapproves];
         [cell.disapproveButton setSelected:comment.userDisapproves];
         
         return cell;
@@ -230,22 +227,50 @@
 
 - (IBAction)approveProposalButtonTapped:(id)sender
 {
-    NSLog(@"approve proposal...");
+    [self.proposal approveWithBlock:^(BOOL success, NSError *error){
+        if (!error){
+            [self downloadComments];
+        } else {
+            [self alertStatus:@"Approve Proposal Failed" message:@"Operation could not be completed. Please try again."];
+        }
+    }];
 }
 
 - (IBAction)disapproveProposalButtonTapped:(id)sender
 {
-    NSLog(@"disapprove proposal...");
+    [self.proposal disapproveWithBlock:^(BOOL success, NSError *error){
+        if (!error){
+            [self downloadComments];
+        } else {
+            [self alertStatus:@"Disapprove Proposal Failed" message:@"Operation could not be completed. Please try again."];
+        }
+    }];
 }
 
 - (IBAction)approveCommentButtonTapped:(id)sender
 {
-    NSLog(@"approve comment...");
+    NSIndexPath *indexPath = [self indexPathForSender:sender];
+    Comment *comment = self.comments[indexPath.row];
+    [comment approveWithBlock:^(BOOL success, NSError *error){
+        if (!error){
+            [self downloadComments];
+        } else {
+            [self alertStatus:@"Approve Comment Failed" message:@"Operation could not be completed. Please try again."];
+        }
+    }];
 }
 
 - (IBAction)disapproveCommentButtonTapped:(id)sender
 {
-    NSLog(@"disapprove comment...");
+    NSIndexPath *indexPath = [self indexPathForSender:sender];
+    Comment *comment = self.comments[indexPath.row];
+    [comment disapproveWithBlock:^(BOOL success, NSError *error){
+        if (!error){
+            [self downloadComments];
+        } else {
+            [self alertStatus:@"Disapprove Comment Failed" message:@"Operation could not be completed. Please try again."];
+        }
+    }];
 }
 
 - (IBAction)insertCommentButtonTapped:(id)sender

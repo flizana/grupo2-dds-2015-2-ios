@@ -56,84 +56,47 @@
 
 - (void)approveWithBlock:(void (^)(BOOL, NSError *))result
 {
-    User *currentUser = [User currentUser];
-    if (currentUser){
-
-        NSString *token = [currentUser getUserToken];
-        
-        // Set information into NSDictionary
-        NSDictionary *params = @{CommentIdParameter: [NSNumber numberWithInteger:self.commentId],
-                                 CommentUserIdParameter: [NSNumber numberWithInteger:[currentUser getUserId]],
-                                 UserTokenParameter: token};
+    // Set information into NSDictionary
+    NSDictionary *params = @{ApproveComment: @{ApproveScore: @1}};
             
-        // Set endpoint URL
-        NSString *approveEndpointURL = [NSString stringWithFormat:@"%@%@", BackendEndpoint, CommentApproveEndpoint];
+    // Set endpoint URL
+    NSString *approveEndpointURL = [NSString stringWithFormat:@"%@%@%li%@%li%@", BackendEndpoint, CommentsEndpoint, self.proposalId, CommentsCommentEndpoint, self.commentId, CommentApproveEndpoint];
             
-        AFHTTPSessionManager *manager = [Network sessionManager];
+    AFHTTPSessionManager *manager = [Network authSessionManager];
         
-        // Check if internet connection is available
-        if ([Reachability reachabilityForInternetConnection]){
-            [manager POST:approveEndpointURL parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
-                NSDictionary *responseDict = (NSDictionary *)responseObject;
-                BOOL success = (BOOL)[(NSNumber *)[responseDict objectForKey:SuccessParamater] boolValue];
-                if (success){
-                    NSLog(@"Comment Approve Successful!");
-                    result(YES, nil);
-                } else {
-                    NSLog(@"Error approving comment");
-                    result(NO, [NSError errorWithDomain:InternalServerErrorDomain code:InternalServerErrorCode userInfo:nil]);
-                }
-            }failure:^(NSURLSessionDataTask *task, NSError *error){
-                NSLog(@"Error approving comment: [%@]", error);
-                result(NO, error);
-            }];
-        } else {
-            result(NO, [NSError errorWithDomain:NoInternetConnectionErrorDomain code:NoInternetConnectionErrorCode userInfo:nil]);
-        }
+    // Check if internet connection is available
+    if ([Reachability reachabilityForInternetConnection]){
+        [manager POST:approveEndpointURL parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
+            result(YES, nil);
+        }failure:^(NSURLSessionDataTask *task, NSError *error){
+            NSLog(@"Error approving comment: [%@]", error);
+            result(NO, error);
+        }];
     } else {
-        result(NO, [NSError errorWithDomain:CurrentUserNilErrorDomain code:CurrentUserNilErrorCode userInfo:nil]);
+        result(NO, [NSError errorWithDomain:NoInternetConnectionErrorDomain code:NoInternetConnectionErrorCode userInfo:nil]);
     }
 }
 
 - (void)disapproveWithBlock:(void (^)(BOOL, NSError *))result
 {
-    User *currentUser = [User currentUser];
-    if (currentUser){
+    // Set information into NSDictionary
+    NSDictionary *params = @{ApproveComment: @{ApproveScore: @-1}};
             
-        User *currentUser = [User currentUser];
-        NSString *token = [currentUser getUserToken];
+    // Set endpoint URL
+    NSString *approveEndpointURL = [NSString stringWithFormat:@"%@%@%li%@%li%@", BackendEndpoint, CommentsEndpoint, self.proposalId, CommentsCommentEndpoint, self.commentId, CommentDisapproveEndpoint];
+            
+    AFHTTPSessionManager *manager = [Network authSessionManager];
         
-        // Set information into NSDictionary
-        NSDictionary *params = @{CommentIdParameter: [NSNumber numberWithInteger:self.commentId],
-                                 CommentUserIdParameter: [NSNumber numberWithInteger:[currentUser getUserId]],
-                                 UserTokenParameter: token};
-            
-        // Set endpoint URL
-        NSString *approveEndpointURL = [NSString stringWithFormat:@"%@%@", BackendEndpoint, CommentDisapproveEndpoint];
-            
-        AFHTTPSessionManager *manager = [Network sessionManager];
-        
-        // Check if internet connection is available
-        if ([Reachability reachabilityForInternetConnection]){
-            [manager POST:approveEndpointURL parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
-                NSDictionary *responseDict = (NSDictionary *)responseObject;
-                BOOL success = (BOOL)[(NSNumber *)[responseDict objectForKey:SuccessParamater] boolValue];
-                if (success){
-                    NSLog(@"Comment Disapprove Successful!");
-                    result(YES, nil);
-                } else {
-                    NSLog(@"Error disapproving comment");
-                    result(NO, [NSError errorWithDomain:InternalServerErrorDomain code:InternalServerErrorCode userInfo:nil]);
-                }
-            }failure:^(NSURLSessionDataTask *task, NSError *error){
-                NSLog(@"Error disapproving comment: [%@]", error);
-                result(NO, error);
-            }];
-        } else {
-            result(NO, [NSError errorWithDomain:NoInternetConnectionErrorDomain code:NoInternetConnectionErrorCode userInfo:nil]);
-        }
+    // Check if internet connection is available
+    if ([Reachability reachabilityForInternetConnection]){
+        [manager POST:approveEndpointURL parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
+            result(YES, nil);
+        }failure:^(NSURLSessionDataTask *task, NSError *error){
+            NSLog(@"Error disapproving comment: [%@]", error);
+            result(NO, error);
+        }];
     } else {
-        result(NO, [NSError errorWithDomain:CurrentUserNilErrorDomain code:CurrentUserNilErrorCode userInfo:nil]);
+        result(NO, [NSError errorWithDomain:NoInternetConnectionErrorDomain code:NoInternetConnectionErrorCode userInfo:nil]);
     }
 }
 
