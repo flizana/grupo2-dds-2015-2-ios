@@ -42,10 +42,10 @@
             if (success){
                 [self parseComments:comments];
             } else {
-                NSLog(@"Error downloading comments.");
+                [self alertStatus:@"Download Failed" message:@"Could not download comments. Please try again."];
             }
         } else {
-            NSLog(@"Error downloading comments: [%@]", error);
+            [self alertStatus:@"Download Failed" message:@"Could not download comments. Please try again."];
         }
     }];
 }

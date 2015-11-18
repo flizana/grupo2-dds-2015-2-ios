@@ -74,19 +74,15 @@
     if (!currentUser){
         result(NO, [NSError errorWithDomain:CurrentUserNilErrorDomain code:CurrentUserNilErrorCode userInfo:nil], nil);
     } else {
-        // Set information into NSDictionary
-        NSDictionary *params = @{UserIdParameter: [NSNumber numberWithLong:[currentUser getUserId]],
-                                 UserTokenParameter: [currentUser getUserToken]};
-        
         // Set endpoint URL
         NSString *idString = [NSString stringWithFormat:@"%li", proposalId];
         NSString *commentsEndpointURL = [NSString stringWithFormat:@"%@%@%@%@", BackendEndpoint, CommentsEndpoint, idString, @".json"];
         
-        AFHTTPSessionManager *manager = [Network sessionManager];
+        AFHTTPSessionManager *manager = [Network authSessionManager];
         
         // Check if internet connection is available
         if ([Reachability reachabilityForInternetConnection]){
-            [manager GET:commentsEndpointURL parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
+            [manager GET:commentsEndpointURL parameters:nil success:^(NSURLSessionDataTask *task, id responseObject){
                 NSDictionary *responseDict = (NSDictionary *)responseObject;
                 NSArray *commentsArray = (NSArray *)[responseDict objectForKey:CommentCommentParameter];
                 result(YES, nil, commentsArray);
