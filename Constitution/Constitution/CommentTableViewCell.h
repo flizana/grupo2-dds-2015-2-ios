@@ -14,5 +14,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *commentLabel;
 @property (strong, nonatomic) IBOutlet UIButton *approveButton;
 @property (strong, nonatomic) IBOutlet UIButton *disapproveButton;
+@property (strong, nonatomic) IBOutlet UILabel *approveLabel;
+@property (strong, nonatomic) IBOutlet UILabel *disapproveLabel;
 
 @end

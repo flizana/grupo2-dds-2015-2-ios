@@ -135,6 +135,12 @@
         cell.proposalLabel.numberOfLines = 0;
         cell.proposalLabel.lineBreakMode = NSLineBreakByWordWrapping;
         cell.proposalLabel.text = self.proposal.proposalText;
+        cell.approveLabel.text = [NSString stringWithFormat:@"%li", self.proposal.numApproval];
+        cell.approveLabel.textAlignment = NSTextAlignmentRight;
+        cell.disapproveLabel.text = [NSString stringWithFormat:@"%li", self.proposal.numDisapproval];
+        cell.disapproveLabel.textAlignment = NSTextAlignmentRight;
+        [cell.approveButton setSelected:self.proposal.userApproves];
+        [cell.disapproveButton setSelected:self.proposal.userDisapproves];
         
         return cell;
     } else if (indexPath.section == 1) { // Comments section
