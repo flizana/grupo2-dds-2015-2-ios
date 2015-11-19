@@ -149,7 +149,7 @@
                                             <state key="normal" image="Thumbs_Down_50.png" backgroundImage="Thumbs_Down_50.png">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <state key="selected" image="Thumbs_Down_Filled_50.png" backgroundImage="Thumbs_Down_Filled_50.png"/>
+                                            <state key="selected" image="down_red.png" backgroundImage="down_red.png"/>
                                             <connections>
                                                 <action selector="disapproveProposalButtonTapped:" destination="Hvc-sp-52o" eventType="touchUpInside" id="SIC-yX-pAp"/>
                                             </connections>
@@ -169,7 +169,7 @@
                                             <state key="normal" image="Thumb_Up_50.png" backgroundImage="Thumb_Up_50.png">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <state key="selected" image="Thumb_Up_50.png" backgroundImage="Thumb_Up_Filled_50.png"/>
+                                            <state key="selected" image="up_green.png" backgroundImage="up_green.png"/>
                                             <connections>
                                                 <action selector="approveProposalButtonTapped:" destination="Hvc-sp-52o" eventType="touchUpInside" id="rN5-tN-ba7"/>
                                             </connections>
@@ -180,7 +180,7 @@
                                                 <constraint firstAttribute="height" constant="46" id="crg-KZ-zUl"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0nG-6B-Kza">
@@ -190,7 +190,7 @@
                                                 <constraint firstAttribute="width" constant="30" id="ygt-Pf-jU9"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yV-ha-Jq4">
@@ -200,7 +200,7 @@
                                                 <constraint firstAttribute="height" constant="50" id="epl-ko-hSP"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -260,7 +260,7 @@
                                             <state key="normal" image="Thumbs_Down_50.png" backgroundImage="Thumbs_Down_50.png">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <state key="selected" image="Thumbs_Down_Filled_50.png" backgroundImage="Thumbs_Down_Filled_50.png"/>
+                                            <state key="selected" image="down_red.png" backgroundImage="down_red.png"/>
                                             <connections>
                                                 <action selector="disapproveCommentButtonTapped:" destination="Hvc-sp-52o" eventType="touchUpInside" id="Lox-3H-gea"/>
                                             </connections>
@@ -274,7 +274,7 @@
                                             <state key="normal" image="Thumb_Up_50.png" backgroundImage="Thumb_Up_50.png">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <state key="selected" image="Thumb_Up_Filled_50.png" backgroundImage="Thumb_Up_Filled_50.png"/>
+                                            <state key="selected" image="up_green.png" backgroundImage="up_green.png"/>
                                             <connections>
                                                 <action selector="approveCommentButtonTapped:" destination="Hvc-sp-52o" eventType="touchUpInside" id="H88-zY-MGj"/>
                                             </connections>
@@ -286,7 +286,7 @@
                                                 <constraint firstAttribute="height" constant="50" id="NwY-Za-7g0"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tib-cU-voG">
@@ -296,7 +296,7 @@
                                                 <constraint firstAttribute="height" constant="50" id="xNr-eo-9Jo"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -553,9 +553,9 @@
         <image name="Circled_User_Male_32.png" width="32" height="32"/>
         <image name="Rules_32.png" width="32" height="32"/>
         <image name="Thumb_Up_50.png" width="50" height="50"/>
-        <image name="Thumb_Up_Filled_50.png" width="50" height="50"/>
         <image name="Thumbs_Down_50.png" width="50" height="50"/>
-        <image name="Thumbs_Down_Filled_50.png" width="50" height="50"/>
+        <image name="down_red.png" width="50" height="50"/>
+        <image name="up_green.png" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="war-J5-Yqi"/>
